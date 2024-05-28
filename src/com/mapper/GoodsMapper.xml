@@ -1,0 +1,558 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.GoodsMapper">
+  <resultMap id="BaseResultMap" type="com.entity.Goods">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="fid" jdbcType="INTEGER" property="fid" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="img" jdbcType="VARCHAR" property="img" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="price" jdbcType="DOUBLE" property="price" />
+    <result column="pubtime" jdbcType="VARCHAR" property="pubtime" />
+    <result column="isdel" jdbcType="VARCHAR" property="isdel" />
+    <result column="uid" jdbcType="VARCHAR" property="uid" />
+    <result column="kcnum" jdbcType="INTEGER" property="kcnum" />
+    <result column="xnum" jdbcType="INTEGER" property="xnum" />
+    <result column="minnum" jdbcType="INTEGER" property="minnum" />
+    <result column="hprice" jdbcType="DOUBLE" property="hprice" />
+    <result column="gno" jdbcType="VARCHAR" property="gno" />
+    <result column="gid" jdbcType="INTEGER" property="gid" />
+    <result column="stime" jdbcType="VARCHAR" property="stime" />
+    <result column="etime" jdbcType="VARCHAR" property="etime" />
+    <result column="addr" jdbcType="VARCHAR" property="addr" />
+    <result column="cname" jdbcType="VARCHAR" property="cname" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.entity.Goods">
+    <result column="note" jdbcType="LONGVARCHAR" property="note" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, fid, status, img, name, price, pubtime, isdel, uid, kcnum, xnum, minnum, hprice, 
+    gno, gid, stime, etime, addr, cname
+  </sql>
+  <sql id="Blob_Column_List">
+    note
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from goods
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from goods
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.entity.Goods">
+    insert into goods (id, fid, status, 
+      img, name, price, pubtime, 
+      isdel, uid, kcnum, 
+      xnum, minnum, hprice, 
+      gno, gid, stime, etime, 
+      addr, cname, note
+      )
+    values (#{id,jdbcType=INTEGER}, #{fid,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, 
+      #{img,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE}, #{pubtime,jdbcType=VARCHAR}, 
+      #{isdel,jdbcType=VARCHAR}, #{uid,jdbcType=VARCHAR}, #{kcnum,jdbcType=INTEGER}, 
+      #{xnum,jdbcType=INTEGER}, #{minnum,jdbcType=INTEGER}, #{hprice,jdbcType=DOUBLE}, 
+      #{gno,jdbcType=VARCHAR}, #{gid,jdbcType=INTEGER}, #{stime,jdbcType=VARCHAR}, #{etime,jdbcType=VARCHAR}, 
+      #{addr,jdbcType=VARCHAR}, #{cname,jdbcType=VARCHAR}, #{note,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.entity.Goods">
+    insert into goods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="fid != null">
+        fid,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="img != null">
+        img,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="pubtime != null">
+        pubtime,
+      </if>
+      <if test="isdel != null">
+        isdel,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="kcnum != null">
+        kcnum,
+      </if>
+      <if test="xnum != null">
+        xnum,
+      </if>
+      <if test="minnum != null">
+        minnum,
+      </if>
+      <if test="hprice != null">
+        hprice,
+      </if>
+      <if test="gno != null">
+        gno,
+      </if>
+      <if test="gid != null">
+        gid,
+      </if>
+      <if test="stime != null">
+        stime,
+      </if>
+      <if test="etime != null">
+        etime,
+      </if>
+      <if test="addr != null">
+        addr,
+      </if>
+      <if test="cname != null">
+        cname,
+      </if>
+      <if test="note != null">
+        note,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="fid != null">
+        #{fid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="img != null">
+        #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="pubtime != null">
+        #{pubtime,jdbcType=VARCHAR},
+      </if>
+      <if test="isdel != null">
+        #{isdel,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="kcnum != null">
+        #{kcnum,jdbcType=INTEGER},
+      </if>
+      <if test="xnum != null">
+        #{xnum,jdbcType=INTEGER},
+      </if>
+      <if test="minnum != null">
+        #{minnum,jdbcType=INTEGER},
+      </if>
+      <if test="hprice != null">
+        #{hprice,jdbcType=DOUBLE},
+      </if>
+      <if test="gno != null">
+        #{gno,jdbcType=VARCHAR},
+      </if>
+      <if test="gid != null">
+        #{gid,jdbcType=INTEGER},
+      </if>
+      <if test="stime != null">
+        #{stime,jdbcType=VARCHAR},
+      </if>
+      <if test="etime != null">
+        #{etime,jdbcType=VARCHAR},
+      </if>
+      <if test="addr != null">
+        #{addr,jdbcType=VARCHAR},
+      </if>
+      <if test="cname != null">
+        #{cname,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        #{note,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.entity.Goods">
+    update goods
+    <set>
+      <if test="fid != null">
+        fid = #{fid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="img != null">
+        img = #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="pubtime != null">
+        pubtime = #{pubtime,jdbcType=VARCHAR},
+      </if>
+      <if test="isdel != null">
+        isdel = #{isdel,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="kcnum != null">
+        kcnum = #{kcnum,jdbcType=INTEGER},
+      </if>
+      <if test="xnum != null">
+        xnum = #{xnum,jdbcType=INTEGER},
+      </if>
+      <if test="minnum != null">
+        minnum = #{minnum,jdbcType=INTEGER},
+      </if>
+      <if test="hprice != null">
+        hprice = #{hprice,jdbcType=DOUBLE},
+      </if>
+      <if test="gno != null">
+        gno = #{gno,jdbcType=VARCHAR},
+      </if>
+      <if test="gid != null">
+        gid = #{gid,jdbcType=INTEGER},
+      </if>
+      <if test="stime != null">
+        stime = #{stime,jdbcType=VARCHAR},
+      </if>
+      <if test="etime != null">
+        etime = #{etime,jdbcType=VARCHAR},
+      </if>
+      <if test="addr != null">
+        addr = #{addr,jdbcType=VARCHAR},
+      </if>
+      <if test="cname != null">
+        cname = #{cname,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        note = #{note,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.entity.Goods">
+    update goods
+    set fid = #{fid,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR},
+      img = #{img,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DOUBLE},
+      pubtime = #{pubtime,jdbcType=VARCHAR},
+      isdel = #{isdel,jdbcType=VARCHAR},
+      uid = #{uid,jdbcType=VARCHAR},
+      kcnum = #{kcnum,jdbcType=INTEGER},
+      xnum = #{xnum,jdbcType=INTEGER},
+      minnum = #{minnum,jdbcType=INTEGER},
+      hprice = #{hprice,jdbcType=DOUBLE},
+      gno = #{gno,jdbcType=VARCHAR},
+      gid = #{gid,jdbcType=INTEGER},
+      stime = #{stime,jdbcType=VARCHAR},
+      etime = #{etime,jdbcType=VARCHAR},
+      addr = #{addr,jdbcType=VARCHAR},
+      cname = #{cname,jdbcType=VARCHAR},
+      note = #{note,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.entity.Goods">
+    update goods
+    set fid = #{fid,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR},
+      img = #{img,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DOUBLE},
+      pubtime = #{pubtime,jdbcType=VARCHAR},
+      isdel = #{isdel,jdbcType=VARCHAR},
+      uid = #{uid,jdbcType=VARCHAR},
+      kcnum = #{kcnum,jdbcType=INTEGER},
+      xnum = #{xnum,jdbcType=INTEGER},
+      minnum = #{minnum,jdbcType=INTEGER},
+      hprice = #{hprice,jdbcType=DOUBLE},
+      gno = #{gno,jdbcType=VARCHAR},
+      gid = #{gid,jdbcType=INTEGER},
+      stime = #{stime,jdbcType=VARCHAR},
+      etime = #{etime,jdbcType=VARCHAR},
+      addr = #{addr,jdbcType=VARCHAR},
+      cname = #{cname,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+	
+
+
+	<select id="getCount" parameterType="java.util.Map" resultType="int">
+		select count(*) from goods where 1=1
+		<if test="name!=null ">
+			and name like concat('%',#{name,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="gno!=null ">
+			and gno like concat('%',#{gno,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="tpstatus!=null ">
+			and tpstatus =#{tpstatus,jdbcType=VARCHAR}
+		</if>
+		<if test="fid != null">
+			and fid = #{fid,jdbcType=VARCHAR}
+		</if>
+		<if test="status != null">
+			and status like concat('%',#{status,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="price != null">
+			and price = #{price,jdbcType=DOUBLE}
+		</if>
+		<if test="uid != null">
+			and uid = #{uid,jdbcType=VARCHAR}
+		</if>
+		<if test="kcnum != null">
+			and kcnum = #{kcnum,jdbcType=INTEGER}
+		</if>
+		<if test="xnum != null">
+			and xnum = #{xnum,jdbcType=INTEGER}
+		</if>
+		<if test="shuoming != null">
+			and shuoming = #{shuoming,jdbcType=VARCHAR}
+		</if>
+		<if test="ftime != null">
+			and ftime = #{ftime,jdbcType=VARCHAR}
+		</if>
+		<if test="fprice != null">
+			and fprice = #{fprice,jdbcType=VARCHAR}
+		</if>
+		<if test="isshow != null">
+			and isshow = #{isshow,jdbcType=VARCHAR}
+		</if>
+		<if test="miaoshu != null">
+			and miaoshu = #{miaoshu,jdbcType=LONGVARCHAR}
+		</if>
+		<if test="ftype!=null ">
+			and ftype like concat('%',#{ftype,jdbcType=VARCHAR},'%')
+		</if>
+	</select>
+	<select id="getAll" parameterType="java.util.Map" resultMap="ResultMapWithBLOBs">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from goods where 1=1
+		<if test="name!=null ">
+			and name like concat('%',#{name,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="gno!=null ">
+			and gno like concat('%',#{gno,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="tpstatus!=null ">
+			and tpstatus =#{tpstatus,jdbcType=VARCHAR}
+		</if>
+		<if test="fid != null">
+			and fid = #{fid,jdbcType=VARCHAR}
+		</if>
+		<if test="status != null">
+			and status like concat('%',#{status,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="price != null">
+			and price = #{price,jdbcType=DOUBLE}
+		</if>
+		<if test="uid != null">
+			and uid = #{uid,jdbcType=VARCHAR}
+		</if>
+		<if test="kcnum != null">
+			and kcnum = #{kcnum,jdbcType=INTEGER}
+		</if>
+		<if test="xnum != null">
+			and xnum = #{xnum,jdbcType=INTEGER}
+		</if>
+		<if test="shuoming != null">
+			and shuoming = #{shuoming,jdbcType=VARCHAR}
+		</if>
+		<if test="ftime != null">
+			and ftime = #{ftime,jdbcType=VARCHAR}
+		</if>
+		<if test="fprice != null">
+			and fprice = #{fprice,jdbcType=VARCHAR}
+		</if>
+		<if test="isshow != null">
+			and isshow = #{isshow,jdbcType=VARCHAR}
+		</if>
+		<if test="miaoshu != null">
+			and miaoshu = #{miaoshu,jdbcType=LONGVARCHAR}
+		</if>
+		<if test="ftype!=null ">
+			and ftype like concat('%',#{ftype,jdbcType=VARCHAR},'%')
+		</if>
+		order by pubtime desc
+	</select>
+	<select id="getAll2" parameterType="java.util.Map" resultMap="ResultMapWithBLOBs">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from goods where 1=1
+		<if test="name!=null ">
+			and name like concat('%',#{name,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="gno!=null ">
+			and gno like concat('%',#{gno,jdbcType=VARCHAR},'%')
+		</if>
+
+		<if test="fid != null">
+			and fid = #{fid,jdbcType=VARCHAR}
+		</if>
+		<if test="status != null">
+			and status like concat('%',#{status,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="price != null">
+			and price = #{price,jdbcType=DOUBLE}
+		</if>
+		<if test="uid != null">
+			and uid = #{uid,jdbcType=VARCHAR}
+		</if>
+		<if test="kcnum != null">
+			and kcnum = #{kcnum,jdbcType=INTEGER}
+		</if>
+		<if test="xnum != null">
+			and xnum = #{xnum,jdbcType=INTEGER}
+		</if>
+		<if test="shuoming != null">
+			and shuoming = #{shuoming,jdbcType=VARCHAR}
+		</if>
+		<if test="ftime != null">
+			and ftime = #{ftime,jdbcType=VARCHAR}
+		</if>
+		<if test="fprice != null">
+			and fprice = #{fprice,jdbcType=VARCHAR}
+		</if>
+		<if test="isshow != null">
+			and isshow = #{isshow,jdbcType=VARCHAR}
+		</if>
+		<if test="miaoshu != null">
+			and miaoshu = #{miaoshu,jdbcType=LONGVARCHAR}
+		</if>
+		<if test="ftype!=null ">
+			and ftype like concat('%',#{ftype,jdbcType=VARCHAR},'%')
+		</if>
+		order by xnum desc
+	</select>
+	<select id="getByPage" parameterType="java.util.Map" resultMap="ResultMapWithBLOBs">
+		select
+		<include refid="Base_Column_List" />
+		from goods where 1=1
+		<if test="name!=null ">
+			and name like concat('%',#{name,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="gno!=null ">
+			and gno like concat('%',#{gno,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="fid != null">
+			and fid = #{fid,jdbcType=VARCHAR}
+		</if>
+		<if test="status != null">
+			and status like concat('%',#{status,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="price != null">
+			and price = #{price,jdbcType=DOUBLE}
+		</if>
+		<if test="uid != null">
+			and uid = #{uid,jdbcType=VARCHAR}
+		</if>
+		<if test="kcnum != null">
+			and kcnum = #{kcnum,jdbcType=INTEGER}
+		</if>
+		<if test="xnum != null">
+			and xnum = #{xnum,jdbcType=INTEGER}
+		</if>
+		<if test="shuoming != null">
+			and shuoming = #{shuoming,jdbcType=VARCHAR}
+		</if>
+		<if test="ftime != null">
+			and ftime = #{ftime,jdbcType=VARCHAR}
+		</if>
+		<if test="fprice != null">
+			and fprice = #{fprice,jdbcType=VARCHAR}
+		</if>
+		<if test="isshow != null">
+			and isshow = #{isshow,jdbcType=VARCHAR}
+		</if>
+		<if test="miaoshu != null">
+			and miaoshu = #{miaoshu,jdbcType=LONGVARCHAR}
+		</if>
+		<if test="ftype!=null ">
+			and ftype like concat('%',#{ftype,jdbcType=VARCHAR},'%')
+		</if>
+		order by pubtime desc
+		<if test="pageno!=null and pageSize!=null">
+			limit #{pageno},#{pageSize}
+		</if>
+
+	</select>
+	<select id="getByPage2" parameterType="java.util.Map" resultMap="ResultMapWithBLOBs">
+		select
+		<include refid="Base_Column_List" />
+		from goods where 1=1
+		<if test="name!=null ">
+			and name like concat('%',#{name,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="gno!=null ">
+			and gno like concat('%',#{gno,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="fid != null">
+			and fid = #{fid,jdbcType=VARCHAR}
+		</if>
+		<if test="status != null">
+			and status like concat('%',#{status,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="price != null">
+			and price = #{price,jdbcType=DOUBLE}
+		</if>
+		<if test="uid != null">
+			and uid = #{uid,jdbcType=VARCHAR}
+		</if>
+		<if test="kcnum != null">
+			and kcnum = #{kcnum,jdbcType=INTEGER}
+		</if>
+		<if test="xnum != null">
+			and xnum = #{xnum,jdbcType=INTEGER}
+		</if>
+		<if test="shuoming != null">
+			and shuoming = #{shuoming,jdbcType=VARCHAR}
+		</if>
+		<if test="ftime != null">
+			and ftime = #{ftime,jdbcType=VARCHAR}
+		</if>
+		<if test="fprice != null">
+			and fprice = #{fprice,jdbcType=VARCHAR}
+		</if>
+		<if test="isshow != null">
+			and isshow = #{isshow,jdbcType=VARCHAR}
+		</if>
+		<if test="miaoshu != null">
+			and miaoshu = #{miaoshu,jdbcType=LONGVARCHAR}
+		</if>
+		<if test="ftype!=null ">
+			and ftype like concat('%',#{ftype,jdbcType=VARCHAR},'%')
+		</if>
+		order by xnum desc
+		<if test="pageno!=null and pageSize!=null">
+			limit #{pageno},#{pageSize}
+		</if>
+
+	</select>
+
+</mapper>

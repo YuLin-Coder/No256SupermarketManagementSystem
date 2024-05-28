@@ -1,0 +1,211 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+ <HEAD>
+  <TITLE> ZTREE DEMO </TITLE>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" href="demoStyle/demo.css" type="text/css">
+  <link rel="stylesheet" href="zTreeStyle/zTreeStyle.css" type="text/css">
+  <script type="text/javascript" src="jquery-1.4.2.js"></script>
+  <script type="text/javascript" src="jquery-ztree-2.5.js"></script>
+  <script type="text/javascript" src="demoTools.js"></script>
+  <SCRIPT LANGUAGE="JavaScript">
+  <!--
+	var zTree1;
+	var setting;
+
+	var zNodes =[
+		{name:"100个节点", id:"1", count:100, isParent:true},
+		{name:"500个节点", id:"2", count:500, isParent:true},
+		{name:"1000个节点", id:"3", count:1000, isParent:true}
+	];
+
+	setting = {
+		expandSpeed: "",
+		callback: {
+			beforeExpand: zTreeBeforeExpand,
+			beforeCollapse: zTreeBeforeCollapse,
+			expand: zTreeOnExpand,
+			collapse: zTreeOnCollapse
+		}
+	};
+
+	$(document).ready(function(){
+		reloadTree();
+	});
+
+//	var asyncUrl = "asyncData/nodeForHugeData.jsp";
+	var asyncUrl = "asyncData/nodeForHugeData.php";
+	var isGetNodes = false;
+	var curParentNode = null;
+	var startTime = 0;
+	var endTime = 0;
+	function zTreeBeforeExpand(treeId, treeNode) {
+		if (!isGetNodes && treeNode.isParent && (!treeNode.nodes || treeNode.nodes.length==0)) {
+			curParentNode = treeNode;
+			isGetNodes = true;
+			var id = curParentNode.id;
+			var count = curParentNode.count;
+			startTime = new Date();		
+			ajaxGetNodes(id, 0, count)
+			return false;
+		} else if (isGetNodes && treeNode.isParent && (!treeNode.nodes || treeNode.nodes.length==0)) {
+			alert("有其他节点正在下载数据中，请稍后展开节点。。。");
+			return false;
+		} else if (isGetNodes && treeNode == curParentNode ) {
+			alert("该节点正在下载数据中，请稍后展开节点。。。");
+			return false;
+		}
+		return true;
+	}
+
+	function zTreeOnExpand(event, treeId, treeNode) {	
+	}
+
+	function zTreeBeforeCollapse(treeId, treeNode) {
+	}
+
+	function zTreeOnCollapse(event, treeId, treeNode) {	
+	}
+
+	function ajaxGetNodes(id, times, totalCount) {
+
+		var curCount = (curParentNode.nodes) ? curParentNode.nodes.length : 0;
+			
+		var getCount = (curCount + perCount) > totalCount ? (totalCount - curCount) : perCount; 
+		
+		var tmpParam = "id="+id+"_"+times +"&count="+getCount;
+		
+		$.ajax({
+			type: "POST",
+			url: asyncUrl,
+			data: tmpParam,
+			success: function(msg) {
+				if (!msg || msg.length == 0) {
+					isGetNodes = false;
+					return;
+				}
+				var newNodes = "";
+				try {
+					newNodes = eval("(" + msg + ")");
+				} catch(err) {}
+
+				if (newNodes && newNodes != "") {
+					zTree1.addNodes(curParentNode, newNodes, true);
+
+					var ajaxInfo = "treeNode:" + curParentNode.name;
+					if (curParentNode.nodes.length < totalCount) {
+						var percent = curParentNode.nodes.length*100/totalCount + "%";
+						ajaxInfo += ("<br/>进度：" + percent);
+						if (!curParentNode.tmpName) curParentNode.tmpName = curParentNode.name;
+						curParentNode.name = curParentNode.tmpName + "(" + percent + ")";
+						zTree1.updateNode(curParentNode);
+						setTimeout("ajaxGetNodes('" + id+ "', "+(times+1)+", "+totalCount+")", perTime);
+					} else {
+						endTime = new Date();
+						var usedTime = (endTime.getTime() - startTime.getTime())/1000;		
+						ajaxInfo += ("<br/>加载完毕，共"+curParentNode.nodes.length+"个子节点, 耗时："+ usedTime + "秒");
+						curParentNode.name = curParentNode.tmpName;
+						curParentNode.tmpName = null;
+						zTree1.updateNode(curParentNode);
+						//zTree1.expandNode(curParentNode, true, false);
+						zTree1.selectNode(curParentNode.nodes[0]);
+						isGetNodes = false;
+					}
+
+					$("#onAsync").html(ajaxInfo);
+				}
+
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) {
+				alert("异步获取数据出现异常。");
+				isGetNodes = false;
+			}
+		});
+	}
+
+	var perCount = 10;
+	function changeCount(count) {
+		if (isGetNodes) {
+			alert("zTree正在下载数据中，请稍后更改配置。。。");
+			$("#a_" + perCount).attr("checked", true);
+			return;
+		}
+		perCount = count;
+		reloadTree()
+	}
+	var perTime = 50;
+	function changeTime(time) {
+		if (isGetNodes) {
+			alert("zTree正在下载数据中，请稍后更改配置。。。");
+			$("#at_" + perTime).attr("checked", true);
+			return;
+		}
+		perTime = time;
+		reloadTree()
+	}
+	
+	function reloadTree() {
+		zTree1 = $("#treeDemo").zTree(setting, clone(zNodes, ""));
+		$("#onAsync").html("<br/>");
+	}
+
+  //-->
+  </SCRIPT>
+ </HEAD>
+
+<BODY>
+<center class="headTitle">大数据量演示<span> —— 高级异步加载</span></center>
+<TABLE border=0 width="700" class="tb1">
+	<TR>
+		<TD width=340px align=center valign=top>
+		<div class="zTreeDemoBackground">
+			<ul id="treeDemo" class="tree"></ul>
+		</div>		
+		</TD>
+		<TD width=360px align=left valign=top>
+		<div class="demoContent">
+			<li class="title focus">
+				<font color="red" style="font-size:12px;">此演示需要发布到 php 服务器下方能正常执行。<br/>
+				使用 Tomcat 的朋友，请修改asyncUrl的值</font>
+			</li>
+			<li class="title focus">
+				<button class="ico star" onfocus="this.blur();"></button>异步加载数据配置
+				<ul class="remark">——修改以下配置后，重新展开节点看看变化</ul>
+				<ul>
+					单次获取条数：<INPUT TYPE="radio" id="a_10" NAME="aCount" checked onclick="changeCount(10);">10条
+					<INPUT TYPE="radio" id="a_50" NAME="aCount" onclick="changeCount(50);">50条
+					<INPUT TYPE="radio" id="a_100" NAME="aCount" onclick="changeCount(100);">100条
+					<br/>单次获取间隔：<INPUT TYPE="radio" id="at_50" NAME="aTime" checked onclick="changeTime(50);">50毫秒
+					<INPUT TYPE="radio" id="at_100" NAME="aTime" onclick="changeTime(100);">100毫秒
+					<INPUT TYPE="radio" id="at_300" NAME="aTime" onclick="changeTime(300);">300毫秒
+				</ul>
+			</li>
+			<li class="title focus">
+				<button class="ico books" onfocus="this.blur();"></button>异步加载说明
+				<ul class="remark">
+					此应用完全利用 zTree 提供的接口，针对特殊案例实现的功能。
+				</ul>
+				<ul class="remark">
+					对于上千个节点的一次性加载，在IE下有可能会出现一段时间的假<br/>
+					死状态，为了避免这种情况，制作自定义的异步加载方法，将上千<br/>
+					个节点进行分组下载，即避免了页面的假死，也可以提供友好的进<br/>
+					度提示功能。
+				</ul>
+				<ul class="remark">
+					应用中还实现了自动展开节点并选中第一个子节点的功能。
+				</ul>
+			</li>
+			<li class="title focus">
+				<button class="ico safari" onfocus="this.blur();"></button>事件监控
+				<ul class="event">
+				异步加载:&nbsp;&nbsp;<a id="onAsync"><br/></a><br/>
+				</ul>
+				
+			</li>
+				
+		</div>	
+		</TD>
+	</TR>
+</TABLE>
+</BODY>
+</HTML>

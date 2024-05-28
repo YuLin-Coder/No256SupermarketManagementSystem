@@ -1,0 +1,170 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+ <HEAD>
+  <TITLE> ZTREE DEMO </TITLE>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" href="demoStyle/demo.css" type="text/css">
+  <link rel="stylesheet" href="zTreeStyle/zTreeStyle.css" type="text/css">
+  <script type="text/javascript" src="jquery-1.4.2.js"></script>
+  <script type="text/javascript" src="jquery-ztree-2.5.js"></script>
+  <script type="text/javascript" src="demoTools.js"></script>
+  <SCRIPT LANGUAGE="JavaScript">
+  <!--
+	var zTree1;
+	var setting;
+
+	setting = {
+		checkable : true,
+		callback: {
+			rightClick: zTreeOnRightClick
+		}
+		
+	};
+
+	var zNodes =[
+  	 	{id:1, name:"此类节点不响应右键菜单", open:true, noR:true,
+  		 	nodes:[
+  		 	       {id:11, name:"节点1", noR:true},
+  		 	       {id:12, name:"节点2", noR:true}
+  		 	       
+  			]},
+  	 	{id:2, name:"使用默认的 treeNode", open:true, 
+  	 		nodes:[
+  		 	       {id:21, name:"节点1"},
+  		 	       {id:22, name:"节点2"}
+  			]},
+  	 	{id:3, name:"重新修正的 treeNode", open:true, newrole:true,
+  	 		nodes:[
+  		 	       {id:31, name:"节点1", newrole:true},
+  		 	       {id:32, name:"节点2", newrole:true}
+  			]}
+  	 	];
+
+	$(document).ready(function(){
+		reloadTree();
+
+		$("body").bind("mousedown", 
+			function(event){
+				if (!(event.target.id == "rMenu" || $(event.target).parents("#rMenu").length>0)) {
+					$("#rMenu").hide();
+				}
+			});
+	});
+
+	function showRMenu(type, x, y) {
+		$("#rMenu ul").show();
+		if (type=="root") {
+			$("#m_del").hide();
+			$("#m_check").hide();
+			$("#m_unCheck").hide();
+		}
+		$("#rMenu").css({"top":y+"px", "left":x+"px", "display":"block"});
+	}
+	function hideRMenu() {
+		$("#rMenu").hide();
+	}
+
+	function zTreeOnRightClick(event, treeId, treeNode) {
+		if (!treeNode) {
+			zTree1.cancelSelectedNode();
+			showRMenu("root", event.clientX, event.clientY);
+		} else if (treeNode && !treeNode.noR) {
+			if (treeNode.newrole && event.target.tagName != "a" && $(event.target).parents("a").length == 0) {
+				zTree1.cancelSelectedNode();
+				showRMenu("root", event.clientX, event.clientY);
+			} else {
+				zTree1.selectNode(treeNode);
+				showRMenu("node", event.clientX, event.clientY);
+			}
+		}
+	}
+	
+	function expandAll(expandSign) {
+		zTree1.expandAll(expandSign);
+	}
+
+	var addCount = 1;
+	function addTreeNode() {
+		zTree1.addNodes(zTree1.getSelectedNode(), [{ name:"增加" + (addCount++)}]);
+		hideRMenu();
+	}
+	function removeTreeNode() {
+		var node = zTree1.getSelectedNode();
+		if (node) {
+			if (node.nodes && node.nodes.length > 0) {
+				var msg = "要删除的节点是父节点，如果删除将连同子节点一起删掉。\n\n请确认！";
+				if (confirm(msg)==true){
+					zTree1.removeNode(node);
+				}
+			} else {
+				zTree1.removeNode(node);
+			}
+		}
+		hideRMenu();
+	}
+	
+	function checkTreeNode(checked) {
+		var node = zTree1.getSelectedNode();
+		if (node) {
+			node.checked = checked;
+			zTree1.updateNode(node, true);
+		}
+		hideRMenu();
+	}
+
+	function reloadTree() {
+		hideRMenu();
+		zTree1 = $("#treeDemo").zTree(setting, clone(zNodes));
+	}	
+
+  //-->
+  </SCRIPT>
+ </HEAD>
+
+<BODY>
+<center class="headTitle">高级应用演示<span> —— 右键菜单</span></center>
+<TABLE border=0 width="700" class="tb1">
+	<TR>
+		<TD width=340px align=center valign=top>
+		<div class="zTreeDemoBackground">
+			<ul id="treeDemo" class="tree"></ul>
+		</div>		
+		</TD>
+		<TD width=360px align=left valign=top>
+		<div class="demoContent">
+			<li class="title focus">
+				<button class="ico star" onfocus="this.blur();"></button>右键菜单说明
+				<ul class="remark">1、菜单注释</ul>
+				<ul class="event">
+					<li>&nbsp;&nbsp;这是一个简单的右键菜单例子，菜单本身比较简陋，仅仅用于功能演示。</li>
+					<li>&nbsp;&nbsp;A、用鼠标右键在演示区域内随便点点看。</li>
+					<li>&nbsp;&nbsp;B、请在不同的节点上下左右点击尝试。</li>
+				</ul>
+				<ul class="remark">2、当前节点的确认</ul>
+				<ul class="event">
+					<li>&nbsp;&nbsp;右键点击时，获取的当前节点是通过 zTree 内 Dom 组件的结构简单判定的，由于拖拽节点进行了更细节的限定，因此这方面会与拖拽节点有一些差异。</li>
+					<li>&nbsp;&nbsp;因为右键事件的event能被正常传递出来，因此用户可以根据自己的特殊需求进行修正，并通过 tId 的命名规则重新获取相应的 treeNode 数据。</li>
+				</ul>
+				<ul class="remark">3、菜单图层</ul>
+				<ul class="event">
+					<li>&nbsp;&nbsp;为了保证菜单图层的独立，建议将右键菜单的 Div 直接放置于 body 内，尽量避免与zTree的css样式产生冲突。</li>
+					<li>&nbsp;&nbsp;菜单图层的样式务必设置成：<font color="red">position:absolute;</font></li>
+				</ul>
+			</li>
+			
+		</div>	
+		</TD>
+	</TR>
+</TABLE>
+
+<div id="rMenu" style="position:absolute; display:none;">
+<li>
+<ul id="m_add" onclick="addTreeNode();"><li>增加节点</li></ul>
+<ul id="m_del" onclick="removeTreeNode();"><li>删除节点</li></ul>
+<ul id="m_check" onclick="checkTreeNode(true);"><li>Check节点</li></ul>
+<ul id="m_unCheck" onclick="checkTreeNode(false);"><li>unCheck节点</li></ul>
+<ul id="m_reset" onclick="reloadTree();"><li>恢复zTree</li></ul>
+</li>
+</div>
+</BODY>
+</HTML>

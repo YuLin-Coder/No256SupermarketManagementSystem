@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+ <HEAD>
+  <TITLE> ZTREE DEMO </TITLE>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" href="demoStyle/demo.css" type="text/css">
+  <link rel="stylesheet" href="zTreeStyle/zTreeStyle.css" type="text/css">
+  <script type="text/javascript" src="jquery-1.4.2.js"></script>
+  <script type="text/javascript" src="jquery-ztree-2.5.js"></script>
+  <SCRIPT LANGUAGE="JavaScript">
+  <!--
+	var zTree1;
+	var setting;
+
+	setting = {
+		editable: true,
+		edit_renameBtn: setRenameBtn,
+		keepParent: true,
+		keepLeaf: true,
+		async: true,
+//		asyncUrl: "asyncData/node.jsp",
+		asyncUrl: "asyncData/node.php",  
+		asyncParam: ["name", "id"],
+		callback: {
+			beforeAsync: beforeAsync
+		}
+	};
+
+	$(document).ready(function(){
+		refreshTree();
+	});
+
+	function setRenameBtn(treeNode) {
+		return false;
+	}
+
+	function beforeAsync(treeId, treeNode) {
+		if (treeNode.level>3) {
+			return false;
+		}
+		return true;
+	}
+
+	function refreshTree() {
+		zTree1 = $("#treeDemo").zTree(setting);
+	}
+
+  //-->
+  </SCRIPT>
+ </HEAD>
+
+<BODY>
+<center class="headTitle">编辑演示<span> —— 编辑 与 异步加载 共存</span></center>
+<TABLE border=0 width="700" class="tb1">
+	<TR>
+		<TD width=340px align=center valign=top>
+		<div class="zTreeDemoBackground">
+			<ul id="treeDemo" class="tree"></ul>
+		</div>		
+		</TD>
+		<TD width=360px align=left valign=top>
+		<div class="demoContent">
+			<li class="title focus">
+				<font color="red" style="font-size:12px;">此演示需要发布到 php 服务器下方能正常执行。<br/>
+				使用 Tomcat 的朋友，请修改asyncUrl的值</font>
+			</li>
+			<li class="title focus">
+				<button class="ico books" onfocus="this.blur();"></button>编辑 与 异步加载 共存 说明
+				<ul class="remark">
+					<li>1、全新修正规则</li>
+				</ul>
+				<ul class="event">
+					<li style="color:red;">从 v2.5 版本开始完全支持 编辑状态 与 异步加载状态 共存</li>
+				</ul>
+				<ul class="remark">
+					<li>2、关键参数：isParent</li>
+				</ul>
+				<ul class="event">
+					<li>A、渲染节点时，通过 isParent 来确定是否显示为父节点</li>
+					<li>B、异步加载时，通过 isParent 以及是否存在子节点，来确定是否需要异步加载子节点</li>
+					<li>C、编辑过程中，由于灵活的拖拽会导致 isParent 在子节点变化的时候而发生改变，从而有可能导致与异步加载之间的数据冲突</li>
+				</ul>
+				<ul class="remark">
+					<li>2、beforeAsync 事件回调函数</li>
+				</ul>
+				<ul class="event">
+					<li>A、从 v2.5 版本开始，增加的这个回调函数，可以便于用户处理编辑状态时造成的父节点重新异步加载的数据问题，根据自定义的规则确定是否进行异步加载。</li>
+					<li>B、这个 Demo 中，判定 level>3 时，将不进行异步加载操作</li>
+				</ul>
+				<ul class="remark">
+					<li>3、父节点、叶子节点的状态</li>
+				</ul>
+				<ul class="event">
+					<li>A、默认规则：任意节点只要 isParent=true 或 存在子节点，就是父节点；只要 isParent!=true 且 没有子节点 就是叶子节点</li>
+					<li>B、默认规则：如果将父节点的子节点全部删除或移走，则该父节点就成为叶子节点</li>
+					<li>C、默认规则：如果将某节点移动到叶子节点内，则该叶子节点就成为父节点</li>
+					<li style="color:red;">D、从 v2.5 版本开始，增加 setting.keepParent 和 setting.keepLeaf 参数，可以随意控制父节点和叶子节点状态的锁定，让用户能够更灵活的调整这一规则</li>
+					<li >这个 Demo 中，锁定了父节点和叶子节点的状态</li>
+				</ul>
+			</li>
+		</div>	
+		</TD>
+	</TR>
+</TABLE>
+ </BODY>
+</HTML>

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.NewsMapper">
+	<resultMap id="BaseResultMap" type="com.entity.News">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="img" jdbcType="VARCHAR" property="img" />
+		<result column="name" jdbcType="VARCHAR" property="name" />
+		<result column="isdel" jdbcType="VARCHAR" property="isdel" />
+		<result column="pubtime" jdbcType="VARCHAR" property="pubtime" />
+	</resultMap>
+	<resultMap extends="BaseResultMap" id="ResultMapWithBLOBs"
+		type="com.entity.News">
+		<result column="note" jdbcType="LONGVARCHAR" property="note" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, img, name, isdel, pubtime
+	</sql>
+	<sql id="Blob_Column_List">
+		note
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="ResultMapWithBLOBs">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from news
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from news
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.entity.News">
+		insert into news (id, img, name,
+		isdel, pubtime, note
+		)
+		values (#{id,jdbcType=INTEGER}, #{img,jdbcType=VARCHAR},
+		#{name,jdbcType=VARCHAR},
+		#{isdel,jdbcType=VARCHAR}, #{pubtime,jdbcType=VARCHAR}, #{note,jdbcType=LONGVARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.entity.News">
+		insert into news
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="img != null">
+				img,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="isdel != null">
+				isdel,
+			</if>
+			<if test="pubtime != null">
+				pubtime,
+			</if>
+			<if test="note != null">
+				note,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="img != null">
+				#{img,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="isdel != null">
+				#{isdel,jdbcType=VARCHAR},
+			</if>
+			<if test="pubtime != null">
+				#{pubtime,jdbcType=VARCHAR},
+			</if>
+			<if test="note != null">
+				#{note,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.entity.News">
+		update news
+		<set>
+			<if test="img != null">
+				img = #{img,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="isdel != null">
+				isdel = #{isdel,jdbcType=VARCHAR},
+			</if>
+			<if test="pubtime != null">
+				pubtime = #{pubtime,jdbcType=VARCHAR},
+			</if>
+			<if test="note != null">
+				note = #{note,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.entity.News">
+		update news
+		set img = #{img,jdbcType=VARCHAR},
+		name = #{name,jdbcType=VARCHAR},
+		isdel = #{isdel,jdbcType=VARCHAR},
+		pubtime = #{pubtime,jdbcType=VARCHAR},
+		note = #{note,jdbcType=LONGVARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.entity.News">
+		update news
+		set img = #{img,jdbcType=VARCHAR},
+		name = #{name,jdbcType=VARCHAR},
+		isdel = #{isdel,jdbcType=VARCHAR},
+		pubtime = #{pubtime,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<select id="getCount" parameterType="java.util.Map" resultType="int">
+		select count(*) from news where isdel="1"
+		<if test="name != null">
+			and name like concat('%',#{name,jdbcType=VARCHAR},'%')
+		</if>
+	</select>
+	<select id="getAll" parameterType="java.util.Map" resultMap="ResultMapWithBLOBs">
+		select
+		<include refid="Base_Column_List" />
+
+		from news where isdel="1"
+		<if test="name != null">
+			and name like concat('%',#{name,jdbcType=VARCHAR},'%')
+		</if>
+		order by pubtime desc
+	</select>
+	<select id="getByPage" parameterType="java.util.Map" resultMap="ResultMapWithBLOBs">
+		select
+		<include refid="Base_Column_List" />
+		from news where isdel="1"
+		<if test="name != null">
+			and name like concat('%',#{name,jdbcType=VARCHAR},'%')
+		</if>
+
+		order by pubtime desc
+		<if test="pageno!=null and pageSize!=null">
+			limit #{pageno},#{pageSize}
+		</if>
+	</select>
+
+
+
+</mapper>

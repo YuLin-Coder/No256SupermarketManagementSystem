@@ -1,0 +1,200 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+ <HEAD>
+  <TITLE> ZTREE DEMO </TITLE>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" href="demoStyle/demo.css" type="text/css">
+  <link rel="stylesheet" href="zTreeStyle/zTreeStyle.css" type="text/css">
+  <script type="text/javascript" src="jquery-1.4.2.js"></script>
+  <script type="text/javascript" src="jquery-ztree-2.5.js"></script>
+  <script type="text/javascript" src="demoTools.js"></script>
+  <style type="text/css">
+  .test {
+  	margin: 0 0 0 5px;
+  }
+  select.selDemo {
+  	height: 16px;
+ 	vertical-align: middle;
+  }
+  </style>
+  <SCRIPT LANGUAGE="JavaScript">
+  <!--
+	var zTree1;
+
+  	var IDMark_Switch = "_switch";
+	var IDMark_Icon = "_ico";
+	var IDMark_Span = "_span";
+	var IDMark_Input = "_input";
+	var IDMark_Check = "_check";
+	var IDMark_Edit = "_edit";
+	var IDMark_Remove = "_remove";
+	var IDMark_Ul = "_ul";
+	var IDMark_A = "_a";
+
+	
+	var setting= {
+			addHoverDom: addHoverDom,
+			removeHoverDom: removeHoverDom,
+			addDiyDom: addDiyDom
+		};
+
+	var zNodes =[
+	 	{id:1, name:"hover事件显示控件", open:true,
+		 	nodes:[
+		 	       {id:11, name:"按钮1"},
+		 	       {id:12, name:"按钮2"},
+		 	       {id:13, name:"下拉框"},
+		 	       {id:141, name:"文本1"},
+		 	       {id:142, name:"文本2"},
+		 	       {id:15, name:"超链接"}
+		 	       
+			]},
+	 	{id:2, name:"始终显示控件", open:true, 
+	 		nodes:[
+		 	       {id:21, name:"按钮1"},
+		 	       {id:22, name:"按钮2"},
+		 	       {id:23, name:"下拉框"},
+		 	       {id:24, name:"文本"},
+		 	       {id:25, name:"超链接"}		 	       
+			]}
+	 	];
+
+
+	$(document).ready(function(){
+		reloadTree();
+	});
+
+	function addHoverDom(treeId, treeNode) {
+		if (treeNode.parentNode && treeNode.parentNode.id!=1) return;
+		var aObj = $("#" + treeNode.tId + IDMark_A);
+		if (treeNode.id == 11) {
+			if ($("#diyBtn_"+treeNode.id).length>0) return;
+			var editStr = "<span id='diyBtn_space_" +treeNode.id+ "' >&nbsp;</span><button type='button' class='diyBtn1' id='diyBtn_" +treeNode.id+ "' title='"+treeNode.name+"' onfocus='this.blur();'></button>";
+			aObj.append(editStr);
+			var btn = $("#diyBtn_"+treeNode.id);
+			if (btn) btn.bind("click", function(){alert("diy Button for " + treeNode.name);});
+		} else if (treeNode.id == 12) {
+			if ($("#diyBtn_"+treeNode.id).length>0) return;
+			var editStr = "<button type='button' class='diyBtn2' id='diyBtn_" +treeNode.id+ "' title='"+treeNode.name+"' onfocus='this.blur();'></button>";
+			aObj.after(editStr);
+			var btn = $("#diyBtn_"+treeNode.id);
+			if (btn) btn.bind("click", function(){alert("diy Button for " + treeNode.name);});
+		} else if (treeNode.id == 13) {
+			if ($("#diyBtn_"+treeNode.id).length>0) return;
+			var editStr = "<span id='diyBtn_space_" +treeNode.id+ "' >&nbsp;</span><select class='selDemo ' id='diyBtn_" +treeNode.id+ "'><option value=1>1</option><option value=2>2</option><option value=3>3</option></select>";
+			aObj.append(editStr);
+			var btn = $("#diyBtn_"+treeNode.id);
+			if (btn) btn.bind("change", function(){alert("diy Select value="+btn.attr("value")+" for " + treeNode.name);});
+		} else if (treeNode.id == 141) {
+			if ($("#diyBtn_"+treeNode.id).length>0) return;
+			var editStr = "<span class='test' id='diyBtn_" +treeNode.id+ "'>Text Demo...</span>";
+			aObj.append(editStr);
+		} else if (treeNode.id == 142) {
+			if ($("#diyBtn_"+treeNode.id).length>0) return;
+			var editStr = "<span id='diyBtn_" +treeNode.id+ "'>Text Demo...</span>";
+			aObj.after(editStr);
+		} else if (treeNode.id == 15) {
+			if ($("#diyBtn1_"+treeNode.id).length>0) return;
+			if ($("#diyBtn2_"+treeNode.id).length>0) return;
+			var editStr = "<a id='diyBtn1_" +treeNode.id+ "' onclick='alert(1);return false;' style='margin:0 0 0 5px;'>链接1</a>" +
+				"<a id='diyBtn2_" +treeNode.id+ "' onclick='alert(2);return false;' style='margin:0 0 0 5px;'>链接2</a>";
+			aObj.append(editStr);
+		}
+	}
+	
+	function removeHoverDom(treeId, treeNode) {
+		if (treeNode.parentNode && treeNode.parentNode.id!=1) return;
+		if (treeNode.id == 15) {
+			$("#diyBtn1_"+treeNode.id).unbind().remove();
+			$("#diyBtn2_"+treeNode.id).unbind().remove();
+		} else {
+			$("#diyBtn_"+treeNode.id).unbind().remove();
+			$("#diyBtn_space_" +treeNode.id).unbind().remove();
+		}		
+	}
+	
+	function addDiyDom(treeId, treeNode) {
+		if (treeNode.parentNode && treeNode.parentNode.id!=2) return;
+		var aObj = $("#" + treeNode.tId + IDMark_A);
+		if (treeNode.id == 21) {
+			var editStr = "<button type='button' class='diyBtn1' id='diyBtn_" +treeNode.id+ "' title='"+treeNode.name+"' onfocus='this.blur();'></button>";
+			aObj.append(editStr);
+			var btn = $("#diyBtn_"+treeNode.id);
+			if (btn) btn.bind("click", function(){alert("diy Button for " + treeNode.name);});
+		} else if (treeNode.id == 22) {
+			var editStr = "<button type='button' class='diyBtn2' id='diyBtn_" +treeNode.id+ "' title='"+treeNode.name+"' onfocus='this.blur();'></button>";
+			aObj.after(editStr);
+			var btn = $("#diyBtn_"+treeNode.id);
+			if (btn) btn.bind("click", function(){alert("diy Button for " + treeNode.name);});
+		} else if (treeNode.id == 23) {
+			var editStr = "<select class='selDemo' id='diyBtn_" +treeNode.id+ "'><option value=1>1</option><option value=2>2</option><option value=3>3</option></select>";
+			aObj.after(editStr);
+			var btn = $("#diyBtn_"+treeNode.id);
+			if (btn) btn.bind("change", function(){alert("diy Select value="+btn.attr("value")+" for " + treeNode.name);});
+		} else if (treeNode.id == 24) {
+			var editStr = "<span id='diyBtn_" +treeNode.id+ "'>Text Demo...</span>";
+			aObj.after(editStr);
+		} else if (treeNode.id == 25) {
+			var editStr = "<a id='diyBtn1_" +treeNode.id+ "' onclick='alert(1);return false;'>链接1</a>" +
+				"<a id='diyBtn2_" +treeNode.id+ "' onclick='alert(2);return false;'>链接2</a>";
+			aObj.after(editStr);
+		}
+	}
+	
+	function reloadTree() {
+		zTree1 = $("#treeDemo").zTree(setting, clone(zNodes, ""));
+	}
+
+  //-->
+  </SCRIPT>
+ </HEAD>
+
+<BODY>
+<center class="headTitle">高级应用演示<span> —— 添加自定义控件</span></center>
+<TABLE border=0 width="700" class="tb1">
+	<TR>
+		<TD width=340px align=center valign=top>
+		<div class="zTreeDemoBackground">
+			<ul id="treeDemo" class="tree"></ul>
+		</div>		
+		</TD>
+		<TD width=360px align=left valign=top>
+		<div class="demoContent">
+			<li class="title focus">
+				<button class="ico star" onfocus="this.blur();"></button>添加自定义控件说明
+				<ul class="remark">1、提供两种添加自定义控件的方法</ul>
+				<ul class="event">
+					<li>&nbsp;&nbsp;一种是当事件切换（hover），即 A、鼠标移动到节点上时显示，B、鼠标移走后删除，C、当节点被选中时显示。</li>
+					<li>&nbsp;&nbsp;参数：setting.addHoverBtn、setting.removeHoverBtn</li>
+					<li>&nbsp;&nbsp;另一种是随着节点初始化后就始终显示。</li>
+					<li>&nbsp;&nbsp;参数：setting.addDiyDom</li>
+					<li style="color:red">&nbsp;&nbsp;zTree内置的编辑、删除按钮都采用事件切换的方式进行显示的。</li>
+				</ul>
+				<ul class="remark">2、位置灵活掌控</ul>
+				<ul class="event">
+					<li>&nbsp;&nbsp;至于你的自定义控件想显示在节点的什么位置，只要在保证zTree完整性的基础上可以任意添加。</li>
+					<li>&nbsp;&nbsp;建议参考代码  var aObj = $("#" + treeNode.tId + IDMark_A); 这个对象对于zTree来讲，应该不会有大的变化，所以你所需要添加的控件是放在aObj的前面后面还是里面，就看你的需求了。</li>
+					<li style="color:red">&nbsp;&nbsp;建议不要让节点换行，否则连线会出现异常。</li>
+				</ul>
+				<ul class="remark">3、请注意添加的控件样式设置</ul>
+				<ul class="event">
+					<li>&nbsp;&nbsp;A、自定义添加的控件请注意其高度不要超过节点的高度，这方面请根据实际情况进行调整。</li>
+					<li>&nbsp;&nbsp;在这个演示中，下拉框默认高度是高于18px的，所以演示的例子中强行设定了下拉框的样式 height:16px</li>
+					<li>&nbsp;&nbsp;B、自定义添加的控件因为是显示在zTree内部，因此一些css样式会直接继承自zTree的样式设定，这方面有特殊情况的用户请自行调整。</li>
+					<li style="color:red">&nbsp;&nbsp;需要兼容IE6的朋友要注意了，下拉框很难设置高度。</li>
+				</ul>
+				<ul class="remark">4、自行绑定事件</ul>
+				<ul class="event">
+					<li>&nbsp;&nbsp;对于自定义添加的控件，如果需要有 click 等事件时，请在添加控件时进行事件绑定。</li>
+				</ul>
+				<ul class="remark">5、这是一种高级应用，根据需求量体裁衣</ul>
+				<ul class="event">
+					<li>&nbsp;&nbsp;对于 zTree 来讲，添加自定义控件的功能完全是一种高级应用，请在对 zTree 的 HTML、css、数据结构都比较了解的情况下，根据不同项目的特殊需求再来决定如何添加自定义控件。</li>
+				</ul>
+			</li>
+		</div>	
+		</TD>
+	</TR>
+</TABLE>
+</BODY>
+</HTML>

@@ -1,0 +1,96 @@
+A {
+	TEXT-DECORATION: none
+}
+A:link {
+	COLOR: #2f2f2f; TEXT-DECORATION: none
+}
+A:hotelInfoed {
+	COLOR: #2f2f2f; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #ff6600; TEXT-DECORATION: none
+}
+BODY {
+	SCROLLBAR-FACE-COLOR: #3a6592; SCROLLBAR-HIGHLIGHT-COLOR: #3a6592; SCROLLBAR-SHADOW-COLOR: #3a6592; COLOR: #135294; SCROLLBAR-3DLIGHT-COLOR: #3a6592; SCROLLBAR-ARROW-COLOR: #ffffff; SCROLLBAR-TRACK-COLOR: #4db5e4; SCROLLBAR-DARKSHADOW-COLOR: #3a6592
+}
+BODY {
+	FONT-SIZE: 9pt; MARGIN: 0px; WORD-BREAK: break-all; LINE-HEIGHT: 150%
+}
+TD {
+	FONT-SIZE: 9pt; MARGIN: 0px; WORD-BREAK: break-all; LINE-HEIGHT: 150%
+}
+DIV {
+	FONT-SIZE: 9pt; MARGIN: 0px; WORD-BREAK: break-all; LINE-HEIGHT: 150%
+}
+TABLE {
+	FONT-SIZE: 9pt; MARGIN: 0px; WORD-BREAK: break-all; LINE-HEIGHT: 150%
+}
+TD {
+	FONT-SIZE: 9pt; LINE-HEIGHT: 150%; FONT-FAMILY: ����
+}
+TD {
+	FONT-SIZE: 12px; COLOR: #333333; LINE-HEIGHT: 16px; FONT-FAMILY: "����"
+}
+TD.SystemLeft {
+	FILTER: alpha(opacity=100); COLOR: #ffffff; POSITION: relative
+}
+TD.SystemLeft A:link {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+TD.SystemLeft A:hotelInfoed {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+TD.SystemLeft A:hover {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+.tableborder {
+	BACKGROUND-COLOR: #6ab6b6
+}
+TD.title {
+	FONT-WEIGHT: bold; COLOR: #ffffff; BACKGROUND-COLOR: #86c4c4
+}
+TD.forumrow {
+	BACKGROUND-COLOR: #eafefe
+}
+TD.forumrowhighlight {
+	BACKGROUND-COLOR: #e0fefe
+}
+TEXTAREA.ConstSet {
+	BORDER-RIGHT: #6fbfbf 1px solid; BORDER-TOP: #6fbfbf 1px ridge; SCROLLBAR-FACE-COLOR: #dae4ef; SCROLLBAR-HIGHLIGHT-COLOR: #dae4ef; BORDER-LEFT: #6fbfbf 1px ridge; SCROLLBAR-SHADOW-COLOR: #dae4ef; COLOR: #333333; SCROLLBAR-3DLIGHT-COLOR: #dae4ef; SCROLLBAR-ARROW-COLOR: #ffffff; SCROLLBAR-TRACK-COLOR: #f8fafc; BORDER-BOTTOM: #6fbfbf 1px solid; SCROLLBAR-DARKSHADOW-COLOR: #dae4ef; BACKGROUND-COLOR: #f8fafc
+}
+INPUT {
+	FONT-SIZE: 12px; COLOR: #333333; HEIGHT: 20px
+}
+.button {
+	BORDER-RIGHT: #333333 1px ridge; BORDER-TOP: #ffffff 1px ridge; FONT-SIZE: 12px; BORDER-LEFT: #ffffff 1px ridge; CURSOR: hand; COLOR: #1c1c1c; BORDER-BOTTOM: #1c1c1c 1px ridge; FONT-FAMILY: "����"; BACKGROUND-COLOR: #eafefe
+}
+.textfield {
+	BORDER-TOP-WIDTH: 1px; BORDER-LEFT-WIDTH: 1px; FONT-SIZE: 12px; BORDER-BOTTOM-WIDTH: 2px; COLOR: #2f2f2f; BORDER-RIGHT-WIDTH: 2px
+}
+TH {
+	BACKGROUND-POSITION: 5px center; PADDING-LEFT: 25px; FONT-WEIGHT: bold; FONT-SIZE: 12px; BACKGROUND-IMAGE: url(Explain.gif); COLOR: white; BACKGROUND-REPEAT: no-repeat; BACKGROUND-COLOR: #6ab6b6; TEXT-ALIGN: left
+}
+.SortFolderOpen {
+	PADDING-LEFT: 16px; LEFT: 16px; BACKGROUND-IMAGE: url(Sort_Folder_Close.gif); CURSOR: hand; BACKGROUND-REPEAT: no-repeat; HEIGHT: 16px
+}
+.SortFolderClose {
+	PADDING-LEFT: 16px; LEFT: 16px; BACKGROUND-IMAGE: url(Sort_Folder_Open.gif); CURSOR: hand; BACKGROUND-REPEAT: no-repeat; HEIGHT: 16px
+}
+.SortEndFolderOpen {
+	PADDING-LEFT: 16px; LEFT: 16px; BACKGROUND-IMAGE: url(SortEnd_Folder_Close.gif); CURSOR: hand; BACKGROUND-REPEAT: no-repeat; HEIGHT: 16px
+}
+.SortEndFolderClose {
+	PADDING-LEFT: 16px; LEFT: 16px; BACKGROUND-IMAGE: url(SortEnd_Folder_Open.gif); CURSOR: hand; BACKGROUND-REPEAT: no-repeat; HEIGHT: 16px
+}
+.SortListline {
+	PADDING-LEFT: 16px; BACKGROUND-IMAGE: url(Sort_Listline.gif); BACKGROUND-REPEAT: repeat-y
+}
+.SortEndListline {
+	PADDING-LEFT: 16px
+}
+.SortFile {
+	PADDING-LEFT: 16px; BACKGROUND-IMAGE: url(Sort_File.gif); CURSOR: hand; BACKGROUND-REPEAT: no-repeat; HEIGHT: 16px
+}
+.SortFileEnd {
+	PADDING-LEFT: 16px; BACKGROUND-IMAGE: url(Sort_File_End.gif); CURSOR: hand; BACKGROUND-REPEAT: no-repeat; HEIGHT: 16px
+}

@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+ <HEAD>
+  <TITLE> ZTREE DEMO </TITLE>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" href="demoStyle/demo.css" type="text/css">
+  <link rel="stylesheet" href="zTreeStyle/zTreeStyle.css" type="text/css">
+  <script type="text/javascript" src="jquery-1.4.2.js"></script>
+  <script type="text/javascript" src="jquery-ztree-2.5.js"></script>
+  <script type="text/javascript" src="asyncData/demoData.js"></script>
+  <script type="text/javascript" src="demoTools.js"></script>
+  <SCRIPT LANGUAGE="JavaScript">
+  <!--
+	var zTree1;
+	var setting;
+
+		setting = {
+			checkable: true,
+			callback: {
+				change:	zTreeOnChange
+			}
+		};
+
+	$(document).ready(function(){
+		refreshTree();
+
+	});
+
+	function zTreeOnChange(event, treeId, treeNode) {
+		getCheckedNodesLength();
+	}
+
+	function getCheckBoxType() {
+		var py = $("#py").attr("checked")? "p":"";
+		var sy = $("#sy").attr("checked")? "s":"";
+		var pn = $("#pn").attr("checked")? "p":"";
+		var sn = $("#sn").attr("checked")? "s":"";
+		
+		var type = { "Y":py + sy, "N":pn + sn};
+		return type;
+	}
+
+	function refreshTree() {
+		var checkType = getCheckBoxType();
+		setting.checkType = checkType;
+		zTree1 = $("#treeDemo").zTree(setting, clone(zNodes));
+		$("#checkTypeCode").html("{\"Y\":" + checkType.Y + ", \"N\":" + checkType.N + "}");
+		getCheckedNodesLength();
+	}
+
+	function getCheckedNodesLength() {
+		var tmp = zTree1.getCheckedNodes();
+		$("#checkedNum").html(tmp.length);
+		tmp = zTree1.getChangeCheckedNodes();
+		$("#checkedChangeNum").html(tmp.length);
+		if ($("#changeYes").attr("checked")) {
+			for (var i=0; i<tmp.length; i++) {
+				tmp[i].checkedOld = tmp[i].checked;
+			}
+		}
+	}
+
+  //-->
+  </SCRIPT>
+ </HEAD>
+
+<BODY>
+<center class="headTitle">CheckBox&nbsp;&nbsp;演示</center>
+<TABLE border=0 width="700" class="tb1">
+	<TR>
+		<TD width=340px align=center valign=top>
+		<div class="zTreeDemoBackground">
+			<ul id="treeDemo" class="tree"></ul>
+		</div>		
+		</TD>
+		<TD width=360px align=left valign=top>
+		<div class="demoContent">
+			<li class="title focus">
+				<button class="ico star" onfocus="this.blur();"></button>CheckBox 父子关系配置
+				<ul class="remark">——修改以下配置，点击 Tree 的 CheckBox，看看变化</ul>
+				<ul>
+					&nbsp;&nbsp;&nbsp;&nbsp;CheckBox被选中时:&nbsp;
+					<INPUT TYPE="checkbox" id="py" checked onchange="refreshTree();" onclick="refreshTree();" onfocus="this.blur();">影响父;&nbsp;&nbsp;
+					<INPUT TYPE="checkbox" id="sy" checked onchange="refreshTree();" onclick="refreshTree();" onfocus="this.blur();">影响子
+				</ul>
+				<ul>
+					CheckBox被取消选中时:&nbsp;
+					<INPUT TYPE="checkbox" id="pn" checked onchange="refreshTree();" onclick="refreshTree();" onfocus="this.blur();">影响父;&nbsp;&nbsp;
+					<INPUT TYPE="checkbox" id="sn" checked onchange="refreshTree();" onclick="refreshTree();" onfocus="this.blur();">影响子
+				</ul>
+				<ul class="event">
+					<li>&nbsp;setting.checkable = <a id="checkableCode">true</a>;</li>
+					<li>&nbsp;setting.checkType = <a id="checkTypeCode"></a>;</li>
+					<li>&nbsp;</li>
+					<li>&nbsp;被选择的节点共 <a id="checkedNum">0</a> 个</li>
+					<li>&nbsp;当前被修改选择状态的节点共 <a id="checkedChangeNum">0</a> 个</li>
+					<li>&nbsp;只计算每次check后修改状态的节点：
+						<INPUT TYPE="radio" id="changeYes" name="changeRadio" checked onfocus="this.blur();" onclick="refreshTree();">Yes;&nbsp;
+						<INPUT TYPE="radio" id="changeNo" name="changeRadio" onfocus="this.blur();" onclick="refreshTree();">No</li>
+				</ul>
+			</li>
+			<li class="title focus">
+				<button class="ico books" onfocus="this.blur();"></button>CheckBox 状态说明
+				<ul class="remark">
+					<button type="BUTTON" class="treeButton checkbox_false_full"></button>当前节点没有被选择；
+					鼠标移到该节点上显示为：<button type="BUTTON" class="treeButton checkbox_false_full_focus"></button><br/>
+					&nbsp;&nbsp;&nbsp;<font style="color:#82ff65">如果是父节点，则没有被选择的子节点。</font>					
+				</ul>
+				<ul class="remark">
+					<button type="BUTTON" class="treeButton checkbox_false_part"></button>当前节点没有被选择；
+					鼠标移到该节点上显示为：<button type="BUTTON" class="treeButton checkbox_false_part_focus"></button><br/>
+					&nbsp;&nbsp;&nbsp;<font style="color:#fb7878">存在被选择的子节点（只有父节点存在此状态）。</font>					
+				</ul>
+				<ul class="remark">
+					<button type="BUTTON" class="treeButton checkbox_true_full"></button>当前节点被选择；
+					鼠标移到该节点上显示为：<button type="BUTTON" class="treeButton checkbox_true_full_focus"></button><br/>
+					&nbsp;&nbsp;&nbsp;<font style="color:#bcf8ff">如果是父节点，则全部子节点都被选择。</font>
+				</ul>
+				<ul class="remark">
+					<button type="BUTTON" class="treeButton checkbox_true_part"></button>当前节点被选择；
+					鼠标移到该节点上显示为：<button type="BUTTON" class="treeButton checkbox_true_part_focus"></button><br/>
+					&nbsp;&nbsp;&nbsp;<font style="color:#fb7878">存在没有被选择的子节点（只有父节点存在此状态）。</font>
+				</ul>
+			</li>
+		</div>	
+		</TD>
+	</TR>
+</TABLE>
+</BODY>
+</HTML>

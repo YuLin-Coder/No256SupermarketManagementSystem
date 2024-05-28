@@ -1,0 +1,149 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+ <HEAD>
+  <TITLE> ZTREE DEMO </TITLE>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" href="demoStyle/demo.css" type="text/css">
+  <link rel="stylesheet" href="zTreeStyle/zTreeStyle.css" type="text/css">
+  <script type="text/javascript" src="jquery-1.4.2.js"></script>
+  <script type="text/javascript" src="jquery-ztree-2.5.js"></script>
+  <script type="text/javascript" src="asyncData/demoData.js"></script>
+  <SCRIPT LANGUAGE="JavaScript">
+  <!--
+	var zTree1;
+	var setting;
+
+		setting = {
+			editable: true,
+			keepParent: false,
+			keepLeaf: false	
+		};
+
+	$(document).ready(function(){
+		refreshTree();
+	});
+
+	function setRenameBtn(treeNode) {
+		return !(treeNode.level == 1 && treeNode.isParent);
+	}
+	function setRemoveBtn(treeNode) {
+		return (!treeNode.isParent);
+	}
+
+	function updateSetting() {
+		var s = zTree1.getSetting();
+		s.keepParent = $("#parentTrue").attr("checked");
+		s.keepLeaf = $("#leafTrue").attr("checked");
+		zTree1.updateSetting(s);
+		$("#keepParentCode").html(s.keepParent + "");
+		$("#keepLeafCode").html(s.keepLeaf + "");
+	}
+
+	function refreshTree() {
+		$("#editableCode").html("true");
+		if ($("#ebfun").attr("checked")) {
+			setting.edit_renameBtn = setRenameBtn;
+			$("#renameBtnCode").html("setRenameBtn");
+		} else {
+			setting.edit_renameBtn = $("#ebTrue").attr("checked");
+			$("#renameBtnCode").html("" + setting.edit_renameBtn);
+		}
+		if ($("#dbfun").attr("checked")) {
+			setting.edit_removeBtn = setRemoveBtn;
+			$("#removeBtnCode").html("setRemoveBtn");
+		} else {
+			setting.edit_removeBtn = $("#dbTrue").attr("checked");
+			$("#removeBtnCode").html("" + setting.edit_removeBtn);
+		}
+		
+		zTree1 = $("#treeDemo").zTree(setting, zNodes);
+	}
+
+  //-->
+  </SCRIPT>
+ </HEAD>
+
+<BODY>
+<center class="headTitle">编辑演示<span> —— 默认编辑</span></center>
+<TABLE border=0 width="700" class="tb1">
+	<TR>
+		<TD width=340px align=center valign=top>
+		<div class="zTreeDemoBackground">
+			<ul id="treeDemo" class="tree"></ul>
+		</div>		
+		</TD>
+		<TD width=360px align=left valign=top>
+		<div class="demoContent">
+			<li class="title focus">
+				<button class="ico star" onfocus="this.blur();"></button>编辑 &amp; 浏览 状态切换
+				<ul class="remark">——修改以下配置后，看看变化</ul>
+				<ul>
+					锁定父节点: <INPUT TYPE="radio" id="parentTrue" NAME="parentBtn" onclick="updateSetting();">true
+					<INPUT TYPE="radio" id="parentFalse" NAME="parentBtn" onclick="updateSetting();" checked >false
+				</ul>
+				<ul class="event">
+					<li>&nbsp;setting.keepParent = <a id="keepParentCode">false</a>;</li>
+				</ul>
+				<ul>
+					锁定叶子节点: <INPUT TYPE="radio" id="leafTrue" NAME="leafBtn" onclick="updateSetting();">true
+					<INPUT TYPE="radio" id="leafTrue" NAME="leafBtn" onclick="updateSetting();" checked >false
+				</ul>
+				<ul class="event">
+					<li>&nbsp;setting.keepLeaf = <a id="keepLeafCode">false</a>;</li>
+				</ul>
+				<ul>
+					是否显示编辑按钮: <INPUT TYPE="radio" id="ebTrue" NAME="editBtn" checked onclick="refreshTree();">true
+					<INPUT TYPE="radio" id="ebFalse" NAME="editBtn" onclick="refreshTree();">false
+					<INPUT TYPE="radio" id="ebfun" NAME="editBtn" onclick="refreshTree();">function
+				</ul>
+				<ul>
+					是否显示删除按钮: <INPUT TYPE="radio" id="dbTrue" NAME="removeBtn" checked onclick="refreshTree();">true
+					<INPUT TYPE="radio" id="dbFalse" NAME="removeBtn" onclick="refreshTree();">false
+					<INPUT TYPE="radio" id="dbfun" NAME="removeBtn" onclick="refreshTree();">function
+				</ul>
+				<ul class="event">
+					<li>&nbsp;setting.editable = <a id="editableCode">true</a>;</li>
+					<li>&nbsp;setting.edit_renameBtn = <a id="renameBtnCode">true</a>;</li>
+					<li>&nbsp;setting.edit_removeBtn = <a id="removeBtnCode">true</a>;</li>
+				</ul>
+			</li>
+			<li class="title focus">
+				<button class="ico books" onfocus="this.blur();"></button>编辑状态说明
+				<ul class="remark">
+					<li>1、编辑状态时，可以对节点进行拖拽操作</li>
+					
+				</ul>
+				<ul class="event">
+					<li>从 v2.2 版本开始，可以拖拽节点进行排序，可以同级节点上下拖拽。</li>
+					<li>从 v2.3 版本开始，可以在多棵树之间拖拽节点。请参考“高级应用演示” 中的 “两棵树之间数据交互”</li>
+					<li>从 v2.5 版本开始，可以锁定父节点、叶子节点状态</li>
+				</ul>
+				<ul class="remark">
+					<li>2、拖拽节点规则</li>
+				</ul>
+				<ul class="event">
+					<li>A、拖拽时如果 zTree 的背景变色，释放后该节点将成为根节点（只有拖拽到zTree边缘时才能成为根节点）</li>
+					<li>B、拖拽到其他节点上时请注意 “箭头图标” 位置（目标节点的上、中、下）</li>
+					<li>C、拖拽到边缘时，滚动条能够自动移动</li>
+				</ul>
+				<ul class="remark">
+					<li>3、编辑状态时，可以修改节点的名称，以及删除节点</li>
+				</ul>
+				<ul class="event">
+					<li>A、按钮可统一设定是否显示</li>
+					<li>B、按钮可根据节点由需求决定是否显示</li>
+					<li>C、自定义控件请参考“高级应用演示” 中的 “添加自定义控件”</li>
+				</ul>
+				<ul class="remark">
+					<li style="text-decoration:line-through; color:red;">4、进入编辑状态时，禁止异步加载</li>
+				</ul>
+				<ul class="event">
+					<li>从 v2.5 版本开始，允许 编辑状态 和 异步加载状态 共存，请参考对应的 Demo。</li>
+				</ul>
+			</li>
+		</div>	
+		</TD>
+	</TR>
+</TABLE>
+ </BODY>
+</HTML>

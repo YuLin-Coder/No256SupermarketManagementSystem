@@ -1,0 +1,59 @@
+/*login*/
+* { margin:0; padding:0; list-style:none; font-size:14px;}
+html { height:100%;}
+body { height:100%;text-align:center;}
+FORM {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+a{ border:0}
+
+#login_bg{ background-image:url(../images/login/login-bg.jpg); background-color:#056AB7; background-position:center; background-repeat:no-repeat}
+.centerDiv { display:inline-block; zoom:1; *display:inline; vertical-align:middle; text-align:left; width:460px; padding:10px; font-size:16px; margin:auto}
+.hiddenDiv { height:100%; overflow:hidden; display:inline-block; width:1px; overflow:hidden; margin-left:-1px; zoom:1; *display:inline; *margin-top:-1px; _margin-top:0; vertical-align:middle;}
+			
+#login-top{ background-image:url(../images/login/login_top.jpg); height:55px; width:460px; background-repeat:no-repeat; display:block}
+#login-main{ background-image:url(../images/login/login_main.jpg); height:150px; width:460px;}			
+#login-fot{ background-image:url(../images/login/login_fot.jpg); height:16px; width:460px; display:block;}
+#login-bc{ background-image:url(../images/login/login_bc.jpg); height:70px;  width:460px; display:block; background-repeat:no-repeat; text-align:center; color:#D6F1FF; font-size:12px; padding-top:10px;}		
+#login-main table{ margin-left:20px;}
+#login-main td{ height:30px; line-height:30px; padding:2px;}
+.font{ color:#557A8D; width:50px;}
+.font1{ color:#557A8D; width:100px; font-size:12px}
+.login-cont{ width:300px; margin-left:10px;}
+.mm{ padding-top:12px;}
+.mm a{color:#085B83; text-decoration:none; font-size:12px}
+
+.ggxx{ background-image:url(../images/login/ggxx.gif); width:110px; height:29px; background-repeat:no-repeat; background-position:left center; margin-top:8px;}
+.ggxx a{ display:block; margin-left:10px; width:100px; height:20px;}
+
+.dl_bt{ background-image:url(../images/login/login-d.jpg); width:83px; height:40px; border:0;cursor:pointer;}
+.dl_bt1{width:88px; }
+.left{ float:left}
+
+.margin-bottom{ margin-bottom:15px;}
+.input{ background-image:url(../images/login/input.jpg); width:150px; height:20px; border:1px #8FBAD1 solid}
+.crl{ clear:both}
+
+
+.top_login_container {BORDER: #96C7DD 1px solid;  DISPLAY: none; LEFT: 0px;  WIDTH: 283px; POSITION: absolute; TOP: 0px; visible: hidden}
+.top_login_head {BACKGROUND-IMAGE: url(../images/login/btbg.gif); BACKGROUND-REPEAT: repeat-x; HEIGHT: 28px}
+.top_login_name {PADDING-RIGHT: 5px; PADDING-LEFT: 10px; FONT-WEIGHT: bold; FONT-SIZE: 12px; FLOAT: left; PADDING-BOTTOM: 5px; PADDING-TOP: 8px; width:80px;}
+
+.top_login_close {PADDING-RIGHT: 5px; PADDING-LEFT: 5px; FLOAT: right; PADDING-BOTTOM: 5px; PADDING-TOP: 5px; border:0}
+.top_login_content {FONT-SIZE: 12px; background-color:#DAF3FF; COLOR: #666666; BACKGROUND-REPEAT: repeat-x; FONT-FAMILY: "ËÎÌו"; HEIGHT: 140px; background-image:url(../images/login/pword-bg.jpg); padding-top:10px; overflow:hidden}
+
+.top_login_btn{ width:80px; background-image:url(../images/login/btbg.gif); background-position:center; border: solid 1px #A5D0EA; height:25px; color:#36638C; padding-top:5px;}
+
+#top_login_form_validate_tips {COLOR: red}
+.top_login_input {WIDTH: 110px; HEIGHT: 18px}
+.table td{ padding-left:5px; line-height:26px;}
+
+
+.help_head{background-image: url(../images/help_03.jpg);}
+.help_head #help_logo{ background-image:url(../images/help_05.jpg); height:94px; width:790px; margin:auto}
+.help_head #help_logo a{ display:block; width:80px; height:30px; float:right; margin-top:60px;}
+.help_head #help_mav{ background-image:url(../images/help_07.jpg); height:22px; width:755px; margin:auto; color:#FFFFFF; padding-left:35px; padding-top:10px; text-align:left;font-size:12px}
+#help_mav span{ color:#055190; font-size:10px}
+.help_content{ border:solid 1px #a1c0dc; background-color:#FFFFFF; width:788px; margin:auto; min-height:600px;}
+.help_bottom{ background-image:url(../images/help_line.jpg); background-position:center top; background-repeat:no-repeat; height:30px; color:#878686; margin:15px auto; padding:15px 0; text-align:center}
+.fffd58{ color:#fffd58;font-size:12px}

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.FshopMapper">
+  <resultMap id="BaseResultMap" type="com.entity.Fshop">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="fid" jdbcType="INTEGER" property="fid" />
+    <result column="num" jdbcType="INTEGER" property="num" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="pubtime" jdbcType="VARCHAR" property="pubtime" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="oid" jdbcType="VARCHAR" property="oid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, fid, num, uid, pubtime, status, oid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from fshop
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from fshop
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.entity.Fshop">
+    insert into fshop (id, fid, num, 
+      uid, pubtime, status, 
+      oid)
+    values (#{id,jdbcType=INTEGER}, #{fid,jdbcType=INTEGER}, #{num,jdbcType=INTEGER}, 
+      #{uid,jdbcType=INTEGER}, #{pubtime,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{oid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.entity.Fshop">
+    insert into fshop
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="fid != null">
+        fid,
+      </if>
+      <if test="num != null">
+        num,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="pubtime != null">
+        pubtime,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="oid != null">
+        oid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="fid != null">
+        #{fid,jdbcType=INTEGER},
+      </if>
+      <if test="num != null">
+        #{num,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="pubtime != null">
+        #{pubtime,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="oid != null">
+        #{oid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.entity.Fshop">
+    update fshop
+    <set>
+      <if test="fid != null">
+        fid = #{fid,jdbcType=INTEGER},
+      </if>
+      <if test="num != null">
+        num = #{num,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="pubtime != null">
+        pubtime = #{pubtime,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="oid != null">
+        oid = #{oid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.entity.Fshop">
+    update fshop
+    set fid = #{fid,jdbcType=INTEGER},
+      num = #{num,jdbcType=INTEGER},
+      uid = #{uid,jdbcType=INTEGER},
+      pubtime = #{pubtime,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      oid = #{oid,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+    <select id="getCount" parameterType="java.util.Map" resultType="int">
+    select  count(*) from fshop  where 1=1 
+   <if test="name!=null ">
+     and name like concat('%',#{name,jdbcType=VARCHAR},'%')
+     </if>
+      <if test="status!=null ">
+     and status like concat('%',#{status,jdbcType=VARCHAR},'%')
+     </if>
+      <if test="fid!=null ">
+     and fid =#{fid,jdbcType=INTEGER}
+     </if>
+     <if test="uid!=null ">
+     and uid =#{uid,jdbcType=INTEGER}
+     </if>
+     <if test="experience!=null ">
+     and experience like concat('%',#{experience,jdbcType=VARCHAR},'%')
+     </if>
+     <if test="oid!=null ">
+     and oid like concat('%',#{oid,jdbcType=VARCHAR},'%')
+     </if>
+  </select>
+  <select id="getAll" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select   
+    <include refid="Base_Column_List" />
+   
+     from fshop where 1=1
+    <if test="name!=null ">
+     and name like concat('%',#{name,jdbcType=VARCHAR},'%')
+     </if>
+      <if test="status!=null ">
+     and status like concat('%',#{status,jdbcType=VARCHAR},'%')
+     </if>
+      <if test="fid!=null ">
+     and fid =#{fid,jdbcType=INTEGER}
+     </if>
+     <if test="uid!=null ">
+     and uid =#{uid,jdbcType=INTEGER}
+     </if>
+     <if test="experience!=null ">
+     and experience like concat('%',#{experience,jdbcType=VARCHAR},'%')
+     </if>
+     <if test="oid!=null ">
+     and oid like concat('%',#{oid,jdbcType=VARCHAR},'%')
+     </if>
+     order by pubtime asc;
+  </select> 
+   <select id="getByPage" parameterType="java.util.Map" resultMap="BaseResultMap">
+     select 
+     <include refid="Base_Column_List" />
+    from fshop where 1=1 
+    <if test="name!=null ">
+     and name like concat('%',#{name,jdbcType=VARCHAR},'%')
+     </if>
+       <if test="status!=null ">
+     and status like concat('%',#{status,jdbcType=VARCHAR},'%')
+     </if>
+      <if test="fid!=null ">
+     and fid =#{fid,jdbcType=INTEGER}
+     </if>
+     <if test="uid!=null ">
+     and uid =#{uid,jdbcType=INTEGER}
+     </if>
+     <if test="oid!=null ">
+     and oid like concat('%',#{oid,jdbcType=VARCHAR},'%')
+     </if>
+      order by pubtime asc 
+     <if test="pageno!=null and pageSize!=null">
+     limit #{pageno},#{pageSize}
+     </if>
+    
+     </select>
+  
+</mapper>

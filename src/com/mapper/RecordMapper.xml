@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.RecordMapper">
+	<resultMap id="BaseResultMap" type="com.entity.Record">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="gid" property="gid" jdbcType="INTEGER" />
+		<result column="stime" property="stime" jdbcType="VARCHAR" />
+		<result column="etime" property="etime" jdbcType="VARCHAR" />
+		<result column="snum" property="snum" jdbcType="INTEGER" />
+		<result column="uid" property="uid" jdbcType="INTEGER" />
+		<result column="cname" property="cname" jdbcType="VARCHAR" />
+		<result column="price" property="price" jdbcType="DOUBLE" />
+		<result column="btype" property="btype" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, gid, stime, etime, snum, uid, cname, price, btype
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from record
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from record
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.entity.Record">
+		insert into record (id, gid, stime,
+		etime, snum, uid, cname,
+		price, btype)
+		values (#{id,jdbcType=INTEGER}, #{gid,jdbcType=INTEGER},
+		#{stime,jdbcType=VARCHAR},
+		#{etime,jdbcType=VARCHAR}, #{snum,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER},
+		#{cname,jdbcType=VARCHAR},
+		#{price,jdbcType=DOUBLE}, #{btype,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.entity.Record">
+		insert into record
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="gid != null">
+				gid,
+			</if>
+			<if test="stime != null">
+				stime,
+			</if>
+			<if test="etime != null">
+				etime,
+			</if>
+			<if test="snum != null">
+				snum,
+			</if>
+			<if test="uid != null">
+				uid,
+			</if>
+			<if test="cname != null">
+				cname,
+			</if>
+			<if test="price != null">
+				price,
+			</if>
+			<if test="btype != null">
+				btype,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="gid != null">
+				#{gid,jdbcType=INTEGER},
+			</if>
+			<if test="stime != null">
+				#{stime,jdbcType=VARCHAR},
+			</if>
+			<if test="etime != null">
+				#{etime,jdbcType=VARCHAR},
+			</if>
+			<if test="snum != null">
+				#{snum,jdbcType=INTEGER},
+			</if>
+			<if test="uid != null">
+				#{uid,jdbcType=INTEGER},
+			</if>
+			<if test="cname != null">
+				#{cname,jdbcType=VARCHAR},
+			</if>
+			<if test="price != null">
+				#{price,jdbcType=DOUBLE},
+			</if>
+			<if test="btype != null">
+				#{btype,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.entity.Record">
+		update record
+		<set>
+			<if test="gid != null">
+				gid = #{gid,jdbcType=INTEGER},
+			</if>
+			<if test="stime != null">
+				stime = #{stime,jdbcType=VARCHAR},
+			</if>
+			<if test="etime != null">
+				etime = #{etime,jdbcType=VARCHAR},
+			</if>
+			<if test="snum != null">
+				snum = #{snum,jdbcType=INTEGER},
+			</if>
+			<if test="uid != null">
+				uid = #{uid,jdbcType=INTEGER},
+			</if>
+			<if test="cname != null">
+				cname = #{cname,jdbcType=VARCHAR},
+			</if>
+			<if test="price != null">
+				price = #{price,jdbcType=DOUBLE},
+			</if>
+			<if test="btype != null">
+				btype = #{btype,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.entity.Record">
+		update record
+		set gid = #{gid,jdbcType=INTEGER},
+		stime = #{stime,jdbcType=VARCHAR},
+		etime = #{etime,jdbcType=VARCHAR},
+		snum = #{snum,jdbcType=INTEGER},
+		uid = #{uid,jdbcType=INTEGER},
+		cname = #{cname,jdbcType=VARCHAR},
+		price = #{price,jdbcType=DOUBLE},
+		btype = #{btype,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+
+
+	<select id="getCount" parameterType="java.util.Map" resultType="int">
+		select count(*) from record where 1=1
+		<if test="gid != null">
+			and gid = #{gid,jdbcType=INTEGER}
+		</if>
+		<if test="uid != null">
+			and uid = #{uid,jdbcType=INTEGER}
+		</if>
+		<if test="btype != null">
+			and btype = #{btype,jdbcType=VARCHAR}
+		</if>
+	</select>
+	<select id="getAll" parameterType="java.util.Map" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+
+		from record where 1=1
+		<if test="gid != null">
+			and gid = #{gid,jdbcType=INTEGER}
+		</if>
+		<if test="uid != null">
+			and uid = #{uid,jdbcType=INTEGER}
+		</if>
+		<if test="btype != null">
+			and btype = #{btype,jdbcType=VARCHAR}
+		</if>
+	</select>
+	<select id="checkUname" parameterType="java.util.Map" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from record where 1=1
+		<if test="name!=null">
+			and name =#{name,jdbcType=VARCHAR}
+		</if>
+	</select>
+	<select id="getByPage" parameterType="java.util.Map" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from record where 1=1
+		<if test="gid != null">
+			and gid = #{gid,jdbcType=INTEGER}
+		</if>
+		<if test="uid != null">
+			and uid = #{uid,jdbcType=INTEGER}
+		</if>
+		<if test="btype != null">
+			and btype = #{btype,jdbcType=VARCHAR}
+		</if>
+		<if test="pageno!=null and pageSize!=null">
+			limit #{pageno},#{pageSize}
+		</if>
+	</select>
+</mapper>

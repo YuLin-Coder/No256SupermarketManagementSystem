@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.ForderMapper">
+  <resultMap id="BaseResultMap" type="com.entity.Forder">
+    <id column="kid" jdbcType="INTEGER" property="kid" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="xid" jdbcType="INTEGER" property="xid" />
+    <result column="fid" jdbcType="INTEGER" property="fid" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="pj" jdbcType="VARCHAR" property="pj" />
+    <result column="stime" jdbcType="VARCHAR" property="stime" />
+    <result column="etime" jdbcType="VARCHAR" property="etime" />
+    <result column="amount" jdbcType="INTEGER" property="amount" />
+    <result column="isdel" jdbcType="VARCHAR" property="isdel" />
+    <result column="pubtime" jdbcType="VARCHAR" property="pubtime" />
+    <result column="zprice" jdbcType="DOUBLE" property="zprice" />
+    <result column="ono" jdbcType="VARCHAR" property="ono" />
+    <result column="lprice" jdbcType="DOUBLE" property="lprice" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    kid, uid, xid, fid, status, pj, stime, etime, amount, isdel, pubtime, zprice, ono, 
+    lprice
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from forder
+    where kid = #{kid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from forder
+    where kid = #{kid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.entity.Forder">
+    insert into forder (kid, uid, xid, 
+      fid, status, pj, stime, 
+      etime, amount, isdel, 
+      pubtime, zprice, ono, 
+      lprice)
+    values (#{kid,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{xid,jdbcType=INTEGER}, 
+      #{fid,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, #{pj,jdbcType=VARCHAR}, #{stime,jdbcType=VARCHAR}, 
+      #{etime,jdbcType=VARCHAR}, #{amount,jdbcType=INTEGER}, #{isdel,jdbcType=VARCHAR}, 
+      #{pubtime,jdbcType=VARCHAR}, #{zprice,jdbcType=DOUBLE}, #{ono,jdbcType=VARCHAR}, 
+      #{lprice,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.entity.Forder">
+    insert into forder
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="kid != null">
+        kid,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="xid != null">
+        xid,
+      </if>
+      <if test="fid != null">
+        fid,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="pj != null">
+        pj,
+      </if>
+      <if test="stime != null">
+        stime,
+      </if>
+      <if test="etime != null">
+        etime,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="isdel != null">
+        isdel,
+      </if>
+      <if test="pubtime != null">
+        pubtime,
+      </if>
+      <if test="zprice != null">
+        zprice,
+      </if>
+      <if test="ono != null">
+        ono,
+      </if>
+      <if test="lprice != null">
+        lprice,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="kid != null">
+        #{kid,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="xid != null">
+        #{xid,jdbcType=INTEGER},
+      </if>
+      <if test="fid != null">
+        #{fid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="pj != null">
+        #{pj,jdbcType=VARCHAR},
+      </if>
+      <if test="stime != null">
+        #{stime,jdbcType=VARCHAR},
+      </if>
+      <if test="etime != null">
+        #{etime,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="isdel != null">
+        #{isdel,jdbcType=VARCHAR},
+      </if>
+      <if test="pubtime != null">
+        #{pubtime,jdbcType=VARCHAR},
+      </if>
+      <if test="zprice != null">
+        #{zprice,jdbcType=DOUBLE},
+      </if>
+      <if test="ono != null">
+        #{ono,jdbcType=VARCHAR},
+      </if>
+      <if test="lprice != null">
+        #{lprice,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.entity.Forder">
+    update forder
+    <set>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="xid != null">
+        xid = #{xid,jdbcType=INTEGER},
+      </if>
+      <if test="fid != null">
+        fid = #{fid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="pj != null">
+        pj = #{pj,jdbcType=VARCHAR},
+      </if>
+      <if test="stime != null">
+        stime = #{stime,jdbcType=VARCHAR},
+      </if>
+      <if test="etime != null">
+        etime = #{etime,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="isdel != null">
+        isdel = #{isdel,jdbcType=VARCHAR},
+      </if>
+      <if test="pubtime != null">
+        pubtime = #{pubtime,jdbcType=VARCHAR},
+      </if>
+      <if test="zprice != null">
+        zprice = #{zprice,jdbcType=DOUBLE},
+      </if>
+      <if test="ono != null">
+        ono = #{ono,jdbcType=VARCHAR},
+      </if>
+      <if test="lprice != null">
+        lprice = #{lprice,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where kid = #{kid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.entity.Forder">
+    update forder
+    set uid = #{uid,jdbcType=INTEGER},
+      xid = #{xid,jdbcType=INTEGER},
+      fid = #{fid,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR},
+      pj = #{pj,jdbcType=VARCHAR},
+      stime = #{stime,jdbcType=VARCHAR},
+      etime = #{etime,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=INTEGER},
+      isdel = #{isdel,jdbcType=VARCHAR},
+      pubtime = #{pubtime,jdbcType=VARCHAR},
+      zprice = #{zprice,jdbcType=DOUBLE},
+      ono = #{ono,jdbcType=VARCHAR},
+      lprice = #{lprice,jdbcType=DOUBLE}
+    where kid = #{kid,jdbcType=INTEGER}
+  </update>
+	
+	<select id="getTongJi" parameterType="java.util.Map" resultType="com.entity.TongJi">
+		SELECT u.tname as name ,SUM(o.amount) as amount ,SUM(o.zprice) as sum
+		FROM forder o , sysuser u WHERE u.id=o.xid
+		<if test="stime1!=null and etime1!=null ">
+			and pubtime BETWEEN #{stime1,jdbcType=VARCHAR} and
+			#{etime1,jdbcType=VARCHAR}
+		</if>
+		GROUP BY o.xid ORDER BY SUM(o.amount) desc
+	</select>
+
+	<!-- SELECT u.tname AS NAME ,SUM(o.zprice) AS amount FROM forder o , sysuser 
+		u WHERE u.id=o.uid -->
+		<!-- SELECT pubtime ,SUM(o.zprice) AS amount FROM forder o  WHERE 1=1 GROUP BY pubtime  -->
+	<select id="getTongJi2" parameterType="java.util.Map" resultType="com.entity.TongJi">
+		SELECT pubtime as name ,SUM(amount) as amount ,SUM(zprice) as sum ,sum(lprice) as liyun
+		FROM forder  WHERE 1=1
+		<if test="stime1!=null and etime1!=null ">
+			and pubtime BETWEEN #{stime1,jdbcType=VARCHAR} and
+			#{etime1,jdbcType=VARCHAR}
+		</if>
+		GROUP BY pubtime desc
+	</select>
+	
+	<select id="getTongJi_user" parameterType="java.util.Map" resultType="com.entity.TongJi">
+		SELECT u.tname AS NAME ,SUM(o.zprice) AS amount , sum(o.lprice) as liyun FROM forder o ,
+		sysuser u
+		WHERE u.id=o.uid
+		<if test="xid!=null ">
+			and o.xid =#{xid,jdbcType=VARCHAR}
+		</if>
+		<if test="stime1!=null and etime1!=null ">
+			and pubtime BETWEEN #{stime1,jdbcType=VARCHAR} and
+			#{etime1,jdbcType=VARCHAR}
+		</if>
+		GROUP BY o.uid ORDER BY SUM(o.zprice) desc
+	</select>
+
+
+	<select id="getCount" parameterType="java.util.Map" resultType="int">
+		select count(*) from forder where 1=1
+		<if test="name!=null ">
+			and name like concat('%',#{name,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="ono!=null ">
+			and ono like concat('%',#{ono,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="status!=null ">
+			and status like concat('%',#{status,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="fid!=null ">
+			and fid =#{fid,jdbcType=VARCHAR}
+		</if>
+		<if test="uid!=null ">
+			and uid =#{uid,jdbcType=INTEGER}
+		</if>
+		<if test="isdel!=null ">
+			and isdel like concat('%',#{isdel,jdbcType=VARCHAR},'%')
+		</if>
+	</select>
+	<select id="getAll" parameterType="java.util.Map" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+
+		from forder where 1=1
+		<if test="name!=null ">
+			and name like concat('%',#{name,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="status!=null ">
+			and status like concat('%',#{status,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="ono!=null ">
+			and ono like concat('%',#{ono,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="fid!=null ">
+			and fid =#{fid,jdbcType=VARCHAR}
+		</if>
+		<if test="uid!=null ">
+			and uid =#{uid,jdbcType=INTEGER}
+		</if>
+		<if test="isdel!=null ">
+			and isdel like concat('%',#{isdel,jdbcType=VARCHAR},'%')
+		</if>
+		order by pubtime desc
+	</select>
+	<select id="getByPage" parameterType="java.util.Map" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from forder where 1=1
+		<if test="name!=null ">
+			and name like concat('%',#{name,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="ono!=null ">
+			and ono like concat('%',#{ono,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="status!=null ">
+			and status like concat('%',#{status,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="isdel!=null ">
+			and isdel like concat('%',#{isdel,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="uid!=null ">
+			and uid =#{uid,jdbcType=INTEGER}
+		</if>
+		<if test="fid!=null ">
+			and fid =#{fid,jdbcType=VARCHAR}
+		</if>
+		order by pubtime desc
+		<if test="pageno!=null and pageSize!=null">
+			limit #{pageno},#{pageSize}
+		</if>
+	</select>
+
+</mapper>

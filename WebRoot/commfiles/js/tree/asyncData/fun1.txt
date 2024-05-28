@@ -1,0 +1,5 @@
+[
+	{ name:"fun1_001", isParent:true},
+	{ name:"fun1_002", checked:true, isParent:true},
+	{ name:"fun1_003"}
+]

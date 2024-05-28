@@ -1,0 +1,171 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+ <HEAD>
+  <TITLE> ZTREE DEMO </TITLE>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" href="demoStyle/demo.css" type="text/css">
+  <link rel="stylesheet" href="zTreeStyle/zTreeStyle.css" type="text/css">
+  <script type="text/javascript" src="jquery-1.4.2.js"></script>
+  <script type="text/javascript" src="jquery-ztree-2.5.js"></script>
+
+
+  <SCRIPT LANGUAGE="JavaScript">
+  <!--
+	var zTree1;
+	var setting;
+
+		setting = {
+			checkable: true,
+			async: true,
+			asyncUrl: "asyncData/node.txt",  //获取节点数据的URL地址
+			asyncParam: ["name", "id"],  //获取节点数据时，必须的数据名称，例如：id、name
+			asyncParamOther: ["test","true"], //其它参数 ( key, value 键值对格式)
+			callback:{
+				beforeAsync: zTreeBeforeAsync,
+				asyncSuccess: zTreeOnAsyncSuccess,
+				asyncError: zTreeOnAsyncError
+			}
+		};
+
+		var zNodes =[];
+
+	$(document).ready(function(){
+		refreshTree('asyncData/node.txt');
+	});
+
+	function getTime() {
+		var now= new Date();
+		var hour=now.getHours();
+		var minute=now.getMinutes();
+		var second=now.getSeconds();
+		return (hour+":"+minute+":"+second);	
+	}
+
+	var tmpUrl = "";
+	function setAsyncUrl(treeNode) {
+		tmpUrl = "asyncData/" + (tmpUrl.indexOf("fun1.txt")>-1 ? "fun2.txt" : "fun1.txt");
+		$("#getUrl").html(tmpUrl);
+		return tmpUrl;
+	}
+
+	function zTreeBeforeAsync(treeId, treeNode) {
+		var r = $("#beforeAsyncTrue").attr("checked");
+		if (!r) alert("beforeAsync return false!!");
+		return r;
+	}
+	
+	function zTreeOnAsyncSuccess(event, treeId, treeNode, msg) {
+		if (treeNode) {
+			$("#onAsyncSuccessNode").html( "[" + getTime() + "]  treeId=" + treeId + ";<br/>&nbsp;tId=" + treeNode.tId + "; Name=" + treeNode.name );
+		} else {
+			$("#onAsyncSuccessNode").html( "[" + getTime() + "]  treeNode is Root!");
+		}
+	}
+
+	function zTreeOnAsyncError(event, treeId, treeNode, XMLHttpRequest, textStatus, errorThrown) {
+		if (treeNode) {
+			$("#onAsyncErrorNode").html( "[" + getTime() + "]  treeId=" + treeId + ";<br/>&nbsp;tId=" + treeNode.tId + "; Name=" + treeNode.name );
+		} else {
+			$("#onAsyncErrorNode").html( "[" + getTime() + "]  treeNode is Root!");
+		}
+	}
+
+	function refreshTree(asyncUrl) {
+		$("#getUrl").html("");
+		$("#onAsyncSuccessNode").html("<br/>");
+		$("#onAsyncErrorNode").html("<br/>");
+		setting.asyncUrl = asyncUrl;
+		if ((typeof asyncUrl) == "function") {
+			$("#asyncUrlCode").html("setAsyncUrl");
+		} else {
+			$("#asyncUrlCode").html("\"" + asyncUrl + "\"" );
+		}
+		zTree1 = $("#treeDemo").zTree(setting, zNodes);
+	}
+
+	function reloadAsync() {
+		var treeNode = zTree1.getSelectedNode();
+		if (!treeNode) {
+			alert("请先选中一个节点");
+			return;
+		}
+		zTree1.reAsyncChildNodes(treeNode, $("#refreshType").attr("checked") ? "refresh" : "add")
+	}
+	
+	function getNow() {
+		var d = new Date();
+		return d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds() + "." + d.getMilliseconds()
+	}
+
+  //-->
+  </SCRIPT>
+ </HEAD>
+
+<BODY>
+<center class="headTitle">异步加载演示</center>
+<TABLE border=0 width="700" class="tb1">
+	<TR>
+		<TD width=340px align=center valign=top>
+		<div class="zTreeDemoBackground">
+			<ul id="treeDemo" class="tree"></ul>
+		</div>		
+		</TD>
+		<TD width=360px align=left valign=top>
+		<div class="demoContent">
+			<li class="title focus">
+				<button class="ico star" onfocus="this.blur();"></button>异步加载数据源配置
+				<ul class="remark">——使用 Tomcat 的朋友，可以自己编写 node.jsp</ul>
+				<ul>
+					asyncUrl: <INPUT TYPE="radio" id="php" NAME="url" checked onclick="refreshTree('asyncData/node.txt');">node.txt（静态数据）
+					<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<INPUT TYPE="radio" id="jsp" NAME="url" onclick="refreshTree('asyncData/node.php');">node.php（动态数据）
+					<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<INPUT TYPE="radio" id="fun" NAME="url" onclick="refreshTree(setAsyncUrl);">function（根据节点修改URL地址）
+				</ul>
+				<ul class="event">
+					<li>&nbsp;setting.async = true;</li>
+					<li>&nbsp;setting.asyncUrl = <a id="asyncUrlCode"></a>;</li>
+					<li>&nbsp;</li>
+					<li>&nbsp;function return value :&nbsp;&nbsp;<a id="getUrl"></a></li>
+				</ul>
+			</li>
+			<li class="title focus">
+				<button class="ico star" onfocus="this.blur();"></button>操作指示
+				<ul class="operate">
+					异步加载选中节点的子节点: <button onclick="reloadAsync();" title="异步加载" onfocus="this.blur();" class="ico refresh"></button>
+					加载模式：<INPUT TYPE="radio" id="refreshType" name="reloadTypeRadio" checked onfocus="this.blur();">刷新
+					<INPUT TYPE="radio" id="addType" name="reloadTypeRadio" onfocus="this.blur();">追加
+				</ul>
+			</li>
+			<li class="title focus">
+				<button class="ico books" onfocus="this.blur();"></button>异步加载说明
+				<ul class="remark">
+					异步加载时获取的数据可以是某一级节点的集合。
+				</ul>
+				<ul class="remark">
+					异步加载时获取的数据也可以是若干级节点的集合；<br/>只要满足树形结构的数据即可。
+				</ul>
+			</li>
+			<li class="title focus">
+				<button class="ico safari" onfocus="this.blur();"></button>事件监控
+				<ul class="remark">——修改 node.php 产生服务器错误可触发onAsyncError事件</ul>
+				<ul>
+					beforeAsync&nbsp;事件 return:
+					<INPUT TYPE="radio" id="beforeAsyncTrue" name="beforeAsyncRadio" checked onfocus="this.blur();">true;&nbsp;
+					<INPUT TYPE="radio" id="beforeAsyncFalse" name="beforeAsyncRadio" onfocus="this.blur();">false
+				</ul>
+				<ul class="event">
+				<li>onAsyncSuccess 事件:&nbsp;&nbsp;<a id="onAsyncSuccessNode"><br/></a></li>
+				</ul>
+				<ul class="event">
+				<li>onAsyncError 事件:&nbsp;&nbsp;<a id="onAsyncErrorNode"><br/></a></li>
+				</ul>
+			</li>
+				
+		</div>	
+		</TD>
+	</TR>
+</TABLE>
+
+ </BODY>
+</HTML>

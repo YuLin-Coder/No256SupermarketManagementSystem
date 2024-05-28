@@ -1,0 +1,128 @@
+.BODY {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; SCROLLBAR-FACE-COLOR: #e6e6e6; FONT-SIZE: 12px; PADDING-BOTTOM: 0px; MARGIN: 0px; SCROLLBAR-HIGHLIGHT-COLOR: #ffffff; SCROLLBAR-SHADOW-COLOR: #ffffff; COLOR: #000000; SCROLLBAR-3DLIGHT-COLOR: #b0b0b0; SCROLLBAR-ARROW-COLOR: #666666; PADDING-TOP: 0px; SCROLLBAR-TRACK-COLOR: #f5f5f5; FONT-FAMILY: Geneva, Arial, Helvetica, sans-serif; SCROLLBAR-DARKSHADOW-COLOR: #9c9c9c; BACKGROUND-COLOR: #ffffff; scrollbar-color: #B0B0B0
+}
+#demo1 {
+overflow:hidden;
+height: 150px;
+text-align: center;
+}
+#demo4 {
+overflow:hidden;
+height: 195px;
+text-align: center;
+}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td,iframe {}
+fieldset,img {border:0;}
+address,caption,cite,dfn,em,th,var {font-style:normal;font-weight:normal;}
+ol,ul {list-style:none;}
+caption,th {text-align:cneter;}
+h1,h2,h3,h4,h5,h6 {font-size:100%;font-weight:normal;}
+q:before,q:after {content:'';}
+abbr,acronym {border:0;}
+
+.on,.question,.often,.question_q a{
+	background:url(Photo/index_bg.png) no-repeat;
+}
+.left{
+	float:left;
+	width:990px;
+}
+
+.banner{
+	width:990px;
+	height:240px;
+	margin-top:5px;
+	position:relative;
+	text-align:cneter;
+}
+.banner_tab{
+	height:33px;
+	position:absolute;
+	right: 580px;
+	bottom: 5px;
+}
+.banner_tab ul {
+	cursor:pointer;
+}
+.banner_tab li {
+    float: left;
+    list-style-type: none;
+    text-align: center;
+}
+.banner_tab a {
+	 width:80px;
+	 height:43px;
+	 display:block;
+	 margin-right:2px;
+}
+.banner_tab  img{
+	border:1px solid #659ab6;
+}
+.hidecontent {display:none;}
+.on{
+	 background-position:0px -100px;
+}
+.on img{
+      border:1px solid #0099ff;
+}
+.out{}
+
+.clear{ clear:both;}
+
+.content{
+	margin:0 auto;
+	background:url(Photo/content_bg.png) repeat-x top;
+	border-left:1px solid #bad1de;
+	border-right:1px solid #bad1de;
+}
+
+.tab_img{ 
+	 width:72px;
+	 height:35px;
+	 margin-top:3px;
+	 border:1px solid #fff;
+ }
+
+.help{
+	margin-top:10px;
+	width:990px;
+}
+.help .div_p{
+	padding:10px 5px 15px;
+	>padding:13px 5px 15px;
+}
+.help .help_ul{
+	padding:10px 0px 30px 30px;
+	>padding-top:1px;
+}
+
+.help_ul li{
+	float:left;
+	width:310px;
+	height:28px;
+	line-height:28px;
+	position:relative;
+}
+.help_ul .img_hot{
+	top:8px;
+	position:absolute;
+}
+
+a.k:link, a.k:visited {
+	color:#228ada;
+	text-decoration:none;
+}
+a.k:active,a.k:hover {
+	color:#000;
+	text-decoration:underline;
+}
+.right{
+	width:230px;
+	float:right;
+}
+.banner1 {	width:990px;
+	height:240px;
+	margin-top:5px;
+	position:relative;
+	text-align:cneter;
+}

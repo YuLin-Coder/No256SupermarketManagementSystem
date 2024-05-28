@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<!--前缀名，这里主要是指定jsp页面在什么目录下面如果在根目录下就写 / -->
+		<property name="prefix" value="/"></property>
+		<!--后缀名，视图资源的后缀名是，这里是 .jsp -->
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+
+	
+</beans>

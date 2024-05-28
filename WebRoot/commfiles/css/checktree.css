@@ -1,0 +1,9 @@
+/*���β˵��б���ʽ*/
+ul.checktree, ul.checktree ul {list-style-type: none; padding: 0; margin: 0; font: 10px sans-serif;}
+ul.checktree li { background: url(/marnav/commfiles/images/node.gif) no-repeat; margin: 0; padding: 0 0 0 16px; cursor: default;}
+ul.checktree li.last { background-image: url(/marnav/commfiles/images/node-last.gif);}
+ul.checktree li.plus { background-image: url(/marnav/commfiles/images/plus.gif);}
+ul.checktree li.plus-last { background-image: url(/marnav/commfiles/images/plus-last.gif);}
+ul.checktree li.minus { background-image: url(/marnav/commfiles/images/minus.gif);}
+ul.checktree li.minus-last { background-image: url(/marnav/commfiles/images/minus-last.gif);}
+ul.checktree span.count {text-indent: 5pt; color: #999; font-style: italic;}

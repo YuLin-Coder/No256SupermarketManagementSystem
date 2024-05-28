@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"D:\add\org\apache\ibatis\builder\xml\mybatis-3-config.dtd">
+<configuration>
+	<!-- 取别名 -->
+	<!-- <typeAliases> <typeAlias type="com.model.entity.Ftype" alias="ftype"/> 
+		<typeAlias type="com.model.entity.Goods" alias="goods"/> <typeAlias type="com.model.entity.GuangGaoPic" 
+		alias="pic"/> <typeAlias type="com.model.entity.Keep" alias="keep"/> <typeAlias 
+		type="com.model.entity.Link" alias="link"/> <typeAlias type="com.model.entity.News" 
+		alias="news"/> <typeAlias type="com.model.entity.Order1" alias="order"/> 
+		<typeAlias type="com.model.entity.Peisong" alias="peisong"/> <typeAlias type="com.model.entity.Shop" 
+		alias="shop"/> <typeAlias type="com.model.entity.UserInfo" alias="user"/> 
+		</typeAliases> -->
+	<!-- 配置开发环境和数据库连接参数 -->
+	<!-- <environments default="development"> <environment id="development"> 
+		<transactionManager type="JDBC" /> <dataSource type="POOLED"> <property name="driver" 
+		value="com.mysql.jdbc.Driver" /> <property name="url" value="jdbc:mysql://localhost:3306/zlz?useUnicode=true&amp;characterEncoding=utf-8" 
+		/> <property name="username" value="root" /> <property name="password" value="123456" 
+		/> </dataSource> </environment> </environments> -->
+	<!-- 导入映射文件 -->
+	<mappers>
+		<mapper resource="com/mapper/SysuserMapper.xml" />
+		<mapper resource="com/mapper/NewsMapper.xml" />
+		<mapper resource="com/mapper/FtypeMapper.xml" />
+		<mapper resource="com/mapper/GoodsMapper.xml" />
+		<mapper resource="com/mapper/ForderMapper.xml" />
+		<mapper resource="com/mapper/FshopMapper.xml" />
+		<mapper resource="com/mapper/RecordMapper.xml" />
+
+		<!-- <mapper resource="com/mapper/RestoreMapper.xml"/> <mapper resource="com/mapper/SysuserMapper.xml"/> 
+			<mapper resource="com/mapper/YYMapper.xml"/> -->
+
+
+		<!-- <package name="com.mapper" /> -->
+
+	</mappers>
+
+</configuration>

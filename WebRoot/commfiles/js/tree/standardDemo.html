@@ -1,0 +1,259 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+ <HEAD>
+  <TITLE> ZTREE DEMO </TITLE>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" href="demoStyle/demo.css" type="text/css">
+  <link rel="stylesheet" href="zTreeStyle/zTreeStyle.css" type="text/css">
+  <link rel="stylesheet" href="zTreeStyle/zTreeIcons.css" type="text/css">
+  <script type="text/javascript" src="jquery-1.4.2.js"></script>
+  <script type="text/javascript" src="jquery-ztree-2.5.js"></script>
+  <script type="text/javascript" src="asyncData/demoData.js"></script>
+  <script type="text/javascript" src="demoTools.js"></script>
+  <SCRIPT LANGUAGE="JavaScript">
+  <!--
+	var zTree1;
+
+		var setting = {
+			fontCss: setFont,
+			showLine: true
+		};
+
+	$(document).ready(function(){
+		reloadTree("1");
+	});
+
+	var colorR = 16;
+	var colorG = 80;
+	var colorB = 120;
+	function setFont(treeId, treeNode) {
+		if (treeNode && treeNode.isParent) {
+			var css = {color: "#"+colorR.toString(16)+colorG.toString(16)+colorB.toString(16)};
+			colorR+=16;
+			colorG+=20;
+			colorB+=30;
+			if (colorR>255) colorR = 16;
+			if (colorG>255) colorG = 16;
+			if (colorB>255) colorB = 16;
+			return css;
+		} else {
+			return {};
+		}
+	}
+
+	function changeIconSkin(zNodes, skinName) {
+		if ($("#standardData").attr("checked")) {
+			zNodes[0].iconSkin = skinName + "1";
+			zNodes[1].iconSkin = skinName + "1";
+			zNodes[2].iconSkin = skinName + "1";
+			zNodes[0].nodes[0].iconSkin = skinName + "2";
+			zNodes[0].nodes[1].iconSkin = skinName + "3";
+			zNodes[0].nodes[2].iconSkin = skinName + "4";
+			zNodes[0].nodes[3].iconSkin = skinName + "5";
+			zNodes[1].nodes[0].iconSkin = skinName + "6";
+			zNodes[1].nodes[1].iconSkin = skinName + "7";
+			zNodes[1].nodes[2].iconSkin = skinName + "8";
+			zNodes[2].nodes[0].iconSkin = skinName + "9";
+			zNodes[2].nodes[1].iconSkin = skinName + "10";
+			zNodes[2].nodes[2].iconSkin = skinName + "2";
+		} else {
+			zNodes[0].iconSkin = skinName + "1";
+			zNodes[17].iconSkin = skinName + "1";
+			zNodes[37].iconSkin = skinName + "1";
+			zNodes[1].iconSkin = skinName + "2";
+			zNodes[6].iconSkin = skinName + "3";
+			zNodes[11].iconSkin = skinName + "4";
+			zNodes[16].iconSkin = skinName + "5";
+			zNodes[18].iconSkin = skinName + "6";
+			zNodes[27].iconSkin = skinName + "7";
+			zNodes[33].iconSkin = skinName + "8";
+			zNodes[38].iconSkin = skinName + "9";
+			zNodes[39].iconSkin = skinName + "10";
+			zNodes[43].iconSkin = skinName + "2";
+		}
+	}
+	
+	var curType = '0';
+	var curLi;
+	function reloadTree(type) {
+		if (curLi) curLi.removeClass("focus");
+		$("#sim").attr("disabled", true);
+		$("#flag").attr("disabled", true);
+	
+		var setting1 = clone(setting);
+		setting1.treeNodeKey = "id";
+		setting1.treeNodeParentKey = "pId";
+		var zNodes1 = $("#standardData").attr("checked") ? clone(zNodes) : clone(simpleNodes);
+		if ($("#standardData").attr("checked")) {
+			$("#standardDataDemo").css({"display":"block"});
+			$("#simpleDataDemo").css({"display":"none"});
+			setting1.isSimpleData = false;
+			zNodes1 = clone(zNodes);
+		} else {
+			$("#standardDataDemo").css({"display":"none"});
+			$("#simpleDataDemo").css({"display":"block"});
+			setting1.isSimpleData = true;
+			zNodes1 = clone(simpleNodes);
+		}
+
+		if (!type) type = (curType=='0') ? '1' : curType;
+		setting1.nameCol = $("#nameCol_1").attr("checked") ? "name" : "ename";
+		setting1.expandSpeed = $("#speed_1").attr("checked") ? "fast" : ($("#speed_2").attr("checked") ? "slow" : "");
+		setting1.fontCss = $("#font_1").attr("checked") ? setFont : {};
+		
+		if (type=="1") {
+			setting1.showLine = true;
+			curLi = $("#defaultStyle");
+			
+		} else if (type=="2") {
+			setting1.showLine = false;
+			curLi = $("#noLineStyle");
+			
+		} else if (type=="3") {
+			setting1.showLine = true;
+
+			if ($("#standardData").attr("checked")) {
+				zNodes1[0].icon = "demoStyle/img/phone.gif";
+				zNodes1[2].icon = "demoStyle/img/home.gif";
+				zNodes1[1].nodes[0].icon = "demoStyle/img/hardware.gif";
+				zNodes1[1].nodes[2].icon = "demoStyle/img/people.gif";
+			} else {
+				zNodes1[0].icon = "demoStyle/img/phone.gif";
+				zNodes1[37].icon = "demoStyle/img/home.gif";
+				zNodes1[18].icon = "demoStyle/img/hardware.gif";
+				zNodes1[33].icon = "demoStyle/img/people.gif";
+			}
+			
+			curLi = $("#diyIconStyle");
+			
+		} else if (type=="4") {
+			setting1.showLine = true;
+			$("#sim").attr("disabled", false);
+			$("#flag").attr("disabled", false);
+			
+			curLi = $("#cssIconStyle");
+			var cssSkin = "sim";
+			if ($("#flag").attr("checked")) {
+				cssSkin = "flag";
+			}
+			changeIconSkin(zNodes1, cssSkin);
+		} else if (type=="5") {
+			setting1.showIcon = false;
+			curLi = $("#noIconStyle");
+			
+		}
+	
+		curLi.addClass("focus");
+		curType = type;
+		zTree1 = $("#treeDemo").zTree(setting1, zNodes1);
+		$("#nameCode").html(setting1.nameCol);
+		$("#expandSpeedCode").html(setting1.expandSpeed);
+		$("#fontCssCode").html($("#font_1").attr("checked") ? "setFont" : "{}");
+		$("#isSimpleDataCode").html(setting1.isSimpleData + "");
+		
+	}
+  //-->
+  </SCRIPT>
+  
+ </HEAD>
+
+<BODY>
+<center class="headTitle">基本功能演示</center>
+<TABLE border=0 width="700" class="tb1">
+	<TR>
+		<TD width=340px align=center valign=top>
+		<div class="zTreeDemoBackground">
+			<ul id="treeDemo" class="tree"></ul>
+		</div>		
+		</TD>
+		<TD width=360px align=left valign=top>
+		<div class="demoContent">
+			<li class="title focus">
+				<button class="ico books" onfocus="this.blur();"></button>基本配置
+				<ul class="remark">——修改以下配置后，看看有什么变化</ul>
+				<ul>
+					节点显示名称对应属性:&nbsp;
+					<INPUT TYPE="radio" id="nameCol_1" NAME="nameColRadio" checked onclick="reloadTree();">name (Default)
+					<INPUT TYPE="radio" id="nameCol_2" NAME="nameColRadio" onclick="reloadTree();">ename
+				</ul>
+				<ul class="event">
+					<li>&nbsp;setting.nameCol = "<a id="nameCode">name</a>";</li>
+				</ul>
+				<ul>
+					展开、折叠效果:&nbsp;
+					<INPUT TYPE="radio" id="speed_1" NAME="speedRadio" checked onclick="reloadTree();">fast (Default)
+					<INPUT TYPE="radio" id="speed_2" NAME="speedRadio" onclick="reloadTree();">slow
+					<INPUT TYPE="radio" id="speed_3" NAME="speedRadio" onclick="reloadTree();">关
+				</ul>
+				<ul class="event">
+					<li>&nbsp;setting.expandSpeed = "<a id="expandSpeedCode">fast</a>";</li>
+				</ul>
+				<ul>
+					<font color="red">* new *</font> 个性化字体效果:&nbsp;
+					<INPUT TYPE="radio" id="font_1" NAME="fontRadio" checked onclick="reloadTree();">yes 
+					<INPUT TYPE="radio" id="font_2" NAME="fontRadio" onclick="reloadTree();">no(Default)
+				</ul>
+				<ul class="event">
+					<li>&nbsp;setting.fontCss = <a id="fontCssCode">setFont</a>;</li>
+				</ul>
+				<ul>
+					zTreeNode 数据格式:&nbsp;
+					<br/>&nbsp;&nbsp;&nbsp;&nbsp;<INPUT TYPE="radio" id="standardData" NAME="dataRadio" checked onclick="reloadTree(curType);">标准深层嵌套 JSON 格式 (Default)
+					<br/>&nbsp;&nbsp;&nbsp;&nbsp;<INPUT TYPE="radio" id="simpleData" NAME="dataRadio" onclick="reloadTree(curType);">简单 Array 数组格式
+					
+				</ul>
+				<ul class="event">
+					<li>&nbsp;setting1.isSimpleData = <a id="isSimpleDataCode">false</a>;</li>
+					<li>&nbsp;setting1.treeNodeKey = "<a id="treeNodeKeyCode">id</a>";</li>
+					<li>&nbsp;setting1.treeNodeParentKey = "<a id="treeNodeParentKeyCode">pId</a>";</li>
+					<li id="standardDataDemo">
+<pre xmlns=""><code>var zTreeNodes = [
+&nbsp;&nbsp;&nbsp;&nbsp;{"id":1, "name":"test1", "nodes":[
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"id":11, "name":"test11", "nodes":[
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"id":111, "name":"test111"}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]},
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"id":12, "name":"test12"}
+&nbsp;&nbsp;&nbsp;&nbsp;]},
+&nbsp;&nbsp;&nbsp;&nbsp;......
+];</code></pre>
+					</li>
+					<li id="simpleDataDemo" style="display:none;">
+<pre xmlns=""><code>var simpleNodes = [
+&nbsp;&nbsp;&nbsp;&nbsp;{"id":1, "pId":0, "name":"test1"},
+&nbsp;&nbsp;&nbsp;&nbsp;{"id":11, "pId":1, "name":"test11"},
+&nbsp;&nbsp;&nbsp;&nbsp;{"id":12, "pId":1, "name":"test12"},
+&nbsp;&nbsp;&nbsp;&nbsp;{"id":111, "pId":11, "name":"test111"},
+&nbsp;&nbsp;&nbsp;&nbsp;......
+];</code></pre>
+					</li>
+					
+				</ul>
+			</li>
+			<li class="title">
+				<button class="ico skin" onfocus="this.blur();"></button>显示样式设置
+				<ul class="remark">——点击以下不同样式，看看有什么变化</ul>
+				<ul>
+					<li id="defaultStyle" class="menu" onclick="reloadTree('1')">
+						<button class="ico star" onfocus="this.blur();"></button>默认样式</li>
+					<li id="noLineStyle" class="menu" onclick="reloadTree('2')">
+						<button class="ico star" onfocus="this.blur();"></button>不显示节点连线</li>
+					<li id="noIconStyle" class="menu" onclick="reloadTree('5')">
+						<button class="ico star" onfocus="this.blur();"></button>不显示节点图标</li>
+					<li id="diyIconStyle" class="menu" onclick="reloadTree('3')">
+						<button class="ico star" onfocus="this.blur();"></button>icon属性自定义图标</li>
+					<li id="cssIconStyle" class="menu" onclick="reloadTree('4')">
+						<button class="ico star" onfocus="this.blur();"></button>css自定义图标（<font color="red">不兼容IE6</font>）
+					</li>
+					<ul>
+						<INPUT TYPE="radio" id="sim" disabled NAME="cssSkin" checked onclick="reloadTree('4');">sim 系列
+						<INPUT TYPE="radio" id="flag" disabled NAME="cssSkin" onclick="reloadTree('4');">flag 系列
+					</ul>
+				</ul>
+			</li>	
+		</div>	
+		</TD>
+	</TR>
+</TABLE>
+
+ </BODY>
+</HTML>

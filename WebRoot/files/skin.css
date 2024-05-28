@@ -1,0 +1,124 @@
+@charset "utf-8";
+.kfoutbox img {display:inline;border:0 none;}
+.kfoutbox{position: absolute; z-index:10000;margin: 0px;}
+.kfoutbox .kfboxmenu{width:29px; height:180px; background:url(r.gif) no-repeat;margin: 0px;}
+.kfoutbox .kfboxmenuleft{background:url(l.gif) no-repeat;margin: 0px;}
+
+.kfoutbox .kfbox{height:auto; width:175px; overflow:hidden; font-size:12px; text-align:center; font-family:"宋体",Verdana, Geneva, sans-serif;margin: 0px;}
+.kfoutbox .kfbox a{text-decoration:none; color:#666666;}
+.kfoutbox .kfbox img{border:none;}
+.kfoutbox .kfbox .kf54kefuqqtop{width:175px; margin: 0px; padding: 0px;background-image: url(middle.gif);background-repeat:no-repeat;background-position: bottom;}
+.kfoutbox .kfbox .kf54kefuqqtop img{
+	margin: 0px;
+	padding: 0px;
+}
+.kfoutbox .kfbox .kf54kefuqqtop .kfboxclose{
+width:30px; height:40px; position:absolute; top:0px; right:0px; cursor:pointer; overflow: hidden;text-align:right;
+}
+.kfoutbox .kfbox .kf54kefuqqinfo{
+	background:url(im_infobox.gif) repeat-y;
+	height:25px;
+	line-height:25px;
+	font-weight:700;
+	padding-right: 8px;
+	padding-left: 8px;
+	margin: 0px;
+}
+.kfoutbox .kfbox .kf54kefuqqinfo a{
+	height:25px;
+	line-height:25px;
+	font-weight:700;
+	padding-right: 8px;
+	padding-left: 8px;
+	margin: 0px;
+}
+.kfoutbox .kfbox .kf54kefuqqbg{
+	background:url(middle.gif) repeat-y;
+	margin: 0px;
+	padding-top: 0px;
+	padding-right: 0px;
+	padding-bottom: 8px;
+	padding-left: 0px;
+}
+.kfoutbox .kfbox .who{clear:both; text-align:right; font-size:9px; padding-right:10px; margin-top:5px;}
+.kfoutbox .kfbox .kf54kefuqqbottom{
+	margin: 0px;
+	padding: 0px;
+}
+.kfoutbox .kfbox .kf54kefuqqbg .kefu54kefunetli{
+	list-style-type:none;
+	margin: 0px;
+	float: left;
+	padding-top: 5px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	padding-left: 0px;
+	font-family: "宋体";
+	font-size: 12px;
+	width: 175px;
+	text-align: left;
+	line-height: 22px;
+	background:url(middle.gif) repeat-y;
+}
+.kfoutbox .kfbox .kf54kefuqqbg .kefu54kefunetli p{
+	margin: 0px;
+	padding: 0px;
+}
+.div{
+	margin: 0px;
+	line-height: 22px;
+	clear: both;
+}
+.kfoutbox .kfbox .kf54kefuqqbg .kefu54kefunetgroup{
+	list-style-type:none;
+	margin: 0px;
+	float: left;
+	padding-top: 5px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	padding-left: 0px;
+	font-family: "宋体";
+	font-size: 12px;
+	width: 165px;
+	text-align: center;
+	line-height: 22px;
+	background:url(middle.gif) repeat-y;
+	clear: both;
+}
+.kfoutbox .kfbox .kf54kefuqqbg .kefu54kefunetgroup p{
+	margin: 0px;
+	padding: 0px;
+}
+.kfoutbox .kfbox .kf54kefuqqbg .kefu54kefunetli .kefu54kefunetpicimg {
+	text-indent: 7px;
+	float: left;
+	margin-left: 5px;
+	padding: 0px;
+	width: 30px;
+}
+.kfoutbox .kfbox .kf54kefuqqbg .kefu54kefunetli .kefu54kefunettxt {
+	text-indent: 4px;
+	float: left;
+	margin: 0px;
+	padding: 0px;
+	width: 125px;
+}
+.kfoutbox .kfbox .kf54kefuqqbg .kefu54kefunetli .kefu54kefunetmycode {
+	float: left;
+	width: 175px;
+	padding: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-left: 0px;
+	margin-bottom: 0px;
+}
+.kfoutbox .kfbox .kf54kefuqqbg .kefu54kefunetli .kefu54kefunetpicimgcenter {
+	float: left;
+	text-align: center;
+	width: 165px;
+	padding: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 4px;
+	margin-left: 5px;
+}

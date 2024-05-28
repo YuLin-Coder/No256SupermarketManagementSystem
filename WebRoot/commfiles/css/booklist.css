@@ -1,0 +1,21 @@
+
+.page_booklist{background-image: url(../images/tabbar_level2_bk.gif); background-repeat:repeat-x; height:23px; text-align:left; padding:4px 0 0  10px;}
+
+
+.jiansje{height:auto; padding:10px 0; clear:both;overflow: hidden; background:url(../images/xuxian.gif) bottom repeat-x;}
+.jiansje ul{ list-style:none; padding:0px; margin:0px;}
+.jiansje li{ display:block;}
+
+.images_k{background: url(../images/coverbg.gif) left top no-repeat;text-align: center;vertical-align: middle;	height: 110px;width: 85px;}
+.images_k img{ margin:4px 2px 2px 0px}
+
+
+
+.jiansje2 ul{ list-style:none; padding:0px;margin:0px;}
+.jiansje2 li{ text-align:left}
+.js3{ font-size:14px; font-weight:bold;}
+.jiansje2 li font{ float:left; display:block; font-size:12px; margin-right:30px;}
+
+
+.setred{COLOR: #FF4B00;}
+.ys_info{float: left; padding-left: 5px}

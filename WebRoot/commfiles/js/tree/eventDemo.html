@@ -1,0 +1,361 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+ <HEAD>
+  <TITLE> ZTREE DEMO </TITLE>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" href="demoStyle/demo.css" type="text/css">
+  <link rel="stylesheet" href="zTreeStyle/zTreeStyle.css" type="text/css">
+  <script type="text/javascript" src="jquery-1.4.2.js"></script>
+  <script type="text/javascript" src="jquery-ztree-2.5.js"></script>
+  <script type="text/javascript" src="asyncData/demoData.js"></script>
+  <SCRIPT LANGUAGE="JavaScript">
+  <!--
+	var zTree1;
+	var setting;
+
+		setting = {
+			editable: true,
+			checkable: true,
+			
+			callback:{
+				beforeClick: zTreeBeforeClick,
+				beforeRightClick: zTreeBeforeRightClick,
+				beforeMouseDown: zTreeBeforeMouseDown,
+				beforeMouseUp: zTreeBeforeMouseUp,
+				beforeChange: zTreeBeforeChange,
+				beforeDrag: zTreeBeforeDrag,
+				beforeDrop: zTreeBeforeDrop,
+				beforeRename: zTreeBeforeRename,
+				beforeRemove: zTreeBeforeRemove,
+				beforeExpand: zTreeBeforeExpand,
+				beforeCollapse: zTreeBeforeCollapse,
+
+				nodeCreated: zTreeOnNodeCreated,
+				click: zTreeOnClick,
+				rightClick: zTreeRightClick,
+				mouseDown: zTreeMouseDown,
+				mouseUp: zTreeMouseUp,
+				change: zTreeChange,
+				drag: zTreeOnDrag,
+				drop: zTreeOnDrop,
+				rename: zTreeOnRename,
+				remove: zTreeOnRemove,
+				expand: zTreeOnExpand,
+				collapse: zTreeOnCollapse
+			}
+			
+		};
+
+	$(document).ready(function(){
+		refreshTree();
+	});
+
+	function getTime() {
+		var now= new Date();
+		var hour=now.getHours();
+		var minute=now.getMinutes();
+		var second=now.getSeconds();
+		return (hour+":"+minute+":"+second);	
+	}
+
+	function zTreeBeforeClick(treeId, treeNode) {
+		var r = $("#beforeClickTrue").attr("checked");
+		if (!r) alert("beforeClick return false!!");
+		return r;
+	}
+	
+	function zTreeBeforeRightClick(treeId, treeNode) {
+		var r = $("#beforeRightClickTrue").attr("checked");
+		if (!r) alert("beforeRightClick return false!!");
+		return r;
+	}
+	
+	function zTreeBeforeMouseDown(treeId, treeNode) {
+		var r = $("#beforeMouseDownTrue").attr("checked");
+		if (!r) alert("beforeMouseDown return false!!");
+		return r;
+	}
+	
+	function zTreeBeforeMouseUp(treeId, treeNode) {
+		var r = $("#beforeMouseUpTrue").attr("checked");
+		if (!r) alert("beforeMouseUp return false!!");
+		return r;
+	}
+	
+	function zTreeBeforeChange(treeId, treeNode) {
+		var r = $("#beforeChangeTrue").attr("checked");
+		if (!r) alert("beforeChange return false!!");
+		return r;
+	}
+
+	function zTreeBeforeDrag(treeId, treeNode) {
+		var r = $("#beforeDragTrue").attr("checked");
+		if (!r) alert("beforeDrag return false!!");
+		return r;
+	}
+
+	function zTreeBeforeDrop(treeId, treeNode, targetNode, moveType) {
+		var r = $("#beforeDropTrue").attr("checked");
+		if (!r) alert("beforeDrop return false!!");
+		return r;
+	}
+
+	function zTreeBeforeRename(treeId, treeNode) {
+		var r = $("#beforeRenameTrue").attr("checked");
+		if (!r) alert("beforeRename return false!!");
+		return r;
+	}
+
+	function zTreeBeforeRemove(treeId, treeNode) {
+		var r = $("#beforeRemoveTrue").attr("checked");
+		if (!r) alert("beforeRemove return false!!");
+		return r;
+	}
+
+	var createdCount = 0;
+	function zTreeOnNodeCreated(event, treeId, treeNode) {
+		createdCount++;
+		$("#onNodeCreated").html( "Created 计数：" + createdCount);
+		
+	}
+	
+	function zTreeOnClick(event, treeId, treeNode) {
+		$("#onClickNode").html( "[" + getTime() + "]  treeId=" + treeId + ";<br/>&nbsp;tId=" + treeNode.tId + "; Name=" + treeNode.name);
+	}
+
+	function getMouse(event) {
+		return "鼠标坐标   left:" + event.clientX + "px, top:" + event.clientY + "px";
+	}
+	function zTreeRightClick(event, treeId, treeNode) {
+		var mouse = getMouse(event);
+		if (treeNode) {
+			$("#onRightClickNode").html( "[" + getTime() + "]  treeId=" + treeId + ";<br/>&nbsp;tId=" + treeNode.tId + "; Name=" + treeNode.name + "<br/>&nbsp;" + mouse);
+		} else {
+			$("#onRightClickNode").html( "[" + getTime() + "]  treeId=" + treeId + ";<br/>&nbsp; treeNode is Root." + "<br/>&nbsp;" + mouse);
+		}
+	}
+	
+	function zTreeMouseDown(event, treeId, treeNode) {
+		var mouse = getMouse(event);
+		if (treeNode) {
+			$("#onMouseDownNode").html( "[" + getTime() + "]  treeId=" + treeId + ";<br/>&nbsp;tId=" + treeNode.tId + "; Name=" + treeNode.name + "<br/>&nbsp;" + mouse);
+		} else {
+			$("#onMouseDownNode").html( "[" + getTime() + "]  treeId=" + treeId + ";<br/>&nbsp; treeNode is Root." + "<br/>&nbsp;" + mouse);
+		}
+	}
+	
+	function zTreeMouseUp(event, treeId, treeNode) {
+		var mouse = getMouse(event);
+		if (treeNode) {
+			$("#onMouseUpNode").html( "[" + getTime() + "]  treeId=" + treeId + ";<br/>&nbsp;tId=" + treeNode.tId + "; Name=" + treeNode.name + "<br/>&nbsp;" + mouse);
+		} else {
+			$("#onMouseUpNode").html( "[" + getTime() + "]  treeId=" + treeId + ";<br/>&nbsp; treeNode is Root." + "<br/>&nbsp;" + mouse);
+		}
+	}	
+	function zTreeChange(event, treeId, treeNode) {
+		$("#onChangeNode").html( "[" + getTime() + "]  treeId=" + treeId + ";<br/>&nbsp;tId=" + treeNode.tId + "; Name=" + treeNode.name
+				 + "; <br/>checked=" + treeNode.checked+ "; checkedOld=" + treeNode.checkedOld);
+	}	
+
+	function zTreeOnDrag(event, treeId, treeNode) {
+		$("#onDragNode").html( "[" + getTime() + "]  treeId=" + treeId + ";<br/>&nbsp;tId=" + treeNode.tId + "; Name=" + treeNode.name);
+	}
+
+	function zTreeOnDrop(event, treeId, treeNode, targetNode, moveType) {
+		if (treeNode) {
+				$("#onDropNode").html( "[" + getTime() + "]  treeId=" + treeId + ";<br/>&nbsp;Src Name = " + treeNode.name 
+						+ "; Target Name = " + ((targetNode != null) ? targetNode.name : "root")
+						+ "; moveType=\"" + moveType + "\"" );
+		} else {
+				$("#onDropNode").html( "[" + getTime() + "]  treeId=" + treeId + ";<br/>&nbsp;拖拽放弃。");
+		}
+	}
+
+	function zTreeOnRename(event, treeId, treeNode) {
+		$("#onRenameNode").html( "[" + getTime() + "]  treeId=" + treeId + ";<br/>&nbsp;tId=" + treeNode.tId + "; Name=" + treeNode.name);
+	}
+
+	function zTreeOnRemove(event, treeId, treeNode) {
+		$("#onRemoveNode").html( "[" + getTime() + "]  treeId=" + treeId + ";<br/>&nbsp;tId=" + treeNode.tId + "; Name=" + treeNode.name);
+	}
+
+	function zTreeBeforeExpand(treeId, treeNode) {
+		var r = $("#beforeExpandTrue").attr("checked");
+		if (!r) alert("beforeExpand return false!!");
+		return r;
+	}
+
+	function zTreeOnExpand(event, treeId, treeNode) {	
+		$("#onExpandNode").html( "[" + getTime() + "]  treeId=" + treeId + ";<br/>&nbsp;tId=" + treeNode.tId + "; Name=" + treeNode.name + " (节点Index = " + zTree1.getNodeIndex(treeNode) + ")");
+	}
+
+	function zTreeBeforeCollapse(treeId, treeNode) {
+		var r = $("#beforeCollapseTrue").attr("checked");
+		if (!r) alert("beforeCollapse return false!!");
+		return r;
+	}
+
+	function zTreeOnCollapse(event, treeId, treeNode) {	
+		$("#onCollapseNode").html( "[" + getTime() + "]  treeId=" + treeId + ";<br/>&nbsp;tId=" + treeNode.tId + "; Name=" + treeNode.name + " (节点Index = " + zTree1.getNodeIndex(treeNode) + ")");
+	}
+
+	function refreshTree() {
+		zTree1 = $("#treeDemo").zTree(setting, zNodes);
+		$("#onClickNode").html("<br/>");
+		$("#onDragNode").html("<br/>");
+		$("#onDropNode").html("<br/>");
+		$("#onRenameNode").html("<br/>");
+		$("#onRemoveNode").html("<br/>");
+		$("#onExpandNode").html("<br/>");
+		$("#onCollapseNode").html("<br/>");
+	}
+
+  //-->
+  </SCRIPT>
+ </HEAD>
+
+<BODY>
+<center class="headTitle">事件演示</center>
+<TABLE border=0 width="700" class="tb1">
+	<TR>
+		<TD width=340px align=center valign=top>
+		<div class="zTreeDemoBackground">
+			<ul id="treeDemo" class="tree"></ul>
+		</div>		
+		</TD>
+		<TD width=360px align=left valign=top>
+		<div class="demoContent">
+			<li class="title focus">
+				<button class="ico safari" onfocus="this.blur();"></button>事件监控
+				<ul class="remark">异步加载的相关事件请参考 异步加载演示</ul>
+				<ul class="remark">——修改 before 事件返回值后，编辑节点，看看有什么变化</ul>
+				<ul>
+					<TABLE border=0 width="100%" >
+					<colgroup>
+					<col >
+					<col width="150px">
+					</colgroup>
+					<tr>
+						<td align=right>beforeClick&nbsp;事件 return: </td>
+						<td>
+							<INPUT TYPE="radio" id="beforeClickTrue" name="beforeClickRadio" checked onfocus="this.blur();">true;&nbsp;
+							<INPUT TYPE="radio" id="beforeClickFalse" name="beforeClickRadio" onfocus="this.blur();">false
+						</td>
+					</tr>
+					<tr>
+						<td align=right>beforeRightClick&nbsp;事件 return: </td>
+						<td>
+							<INPUT TYPE="radio" id="beforeRightClickTrue" name="beforeRightClickRadio" checked onfocus="this.blur();">true;&nbsp;
+							<INPUT TYPE="radio" id="beforeRightClickFalse" name="beforeRightClickRadio" onfocus="this.blur();">false
+						</td>
+					</tr>
+					<tr>
+						<td align=right>beforeMouseDown&nbsp;事件 return: </td>
+						<td>
+							<INPUT TYPE="radio" id="beforeMouseDownTrue" name="beforeMouseDownRadio" checked onfocus="this.blur();">true;&nbsp;
+							<INPUT TYPE="radio" id="beforeMouseDownFalse" name="beforeMouseDownRadio" onfocus="this.blur();">false
+						</td>
+					</tr>
+					<tr>
+						<td align=right>beforeMouseUp&nbsp;事件 return: </td>
+						<td>
+							<INPUT TYPE="radio" id="beforeMouseUpTrue" name="beforeMouseUpRadio" checked onfocus="this.blur();">true;&nbsp;
+							<INPUT TYPE="radio" id="beforeMouseUpFalse" name="beforeMouseUpRadio" onfocus="this.blur();">false
+						</td>
+					</tr>
+					<tr>
+						<td align=right>beforeChange&nbsp;事件 return: </td>
+						<td>
+							<INPUT TYPE="radio" id="beforeChangeTrue" name="beforeChangeRadio" checked onfocus="this.blur();">true;&nbsp;
+							<INPUT TYPE="radio" id="beforeChangeFalse" name="beforeChangeRadio" onfocus="this.blur();">false
+						</td>
+					</tr>
+					<tr>
+						<td align=right>beforeDrag&nbsp;事件 return: </td>
+						<td>
+							<INPUT TYPE="radio" id="beforeDragTrue" name="beforeDragRadio" checked onfocus="this.blur();">true;&nbsp;
+							<INPUT TYPE="radio" id="beforeDragFalse" name="beforeDragRadio" onfocus="this.blur();">false
+						</td>
+					</tr>
+					<tr>
+						<td align=right>beforeDrop&nbsp;事件 return: </td>
+						<td>
+							<INPUT TYPE="radio" id="beforeDropTrue" name="beforeDropRadio" checked onfocus="this.blur();">true;&nbsp;
+							<INPUT TYPE="radio" id="beforeDropFalse" name="beforeDropRadio" onfocus="this.blur();">false
+						</td>
+					</tr>
+					<tr>
+						<td align=right>beforeRename&nbsp;事件 return: </td>
+						<td>
+							<INPUT TYPE="radio" id="beforeRenameTrue" name="beforeRenameRadio" checked onfocus="this.blur();">true;&nbsp;
+							<INPUT TYPE="radio" id="beforeRenameFalse" name="beforeRenameRadio" onfocus="this.blur();">false
+						</td>
+					</tr>
+					<tr>
+						<td align=right>beforeRemove&nbsp;事件 return: </td>
+						<td>
+							<INPUT TYPE="radio" id="beforeRemoveTrue" name="beforeRemoveRadio" checked onfocus="this.blur();">true;&nbsp;
+							<INPUT TYPE="radio" id="beforeRemoveFalse" name="beforeRemoveRadio" onfocus="this.blur();">false
+						</td>
+					</tr>
+					<tr>
+						<td align=right>beforeExpand&nbsp;事件 return: </td>
+						<td>
+							<INPUT TYPE="radio" id="beforeExpandTrue" name="beforeExpandRadio" checked onfocus="this.blur();">true;&nbsp;
+							<INPUT TYPE="radio" id="beforeExpandFalse" name="beforeExpandRadio" onfocus="this.blur();">false
+						</td>
+					</tr>
+					<tr>
+						<td align=right>beforeCollapse&nbsp;事件 return: </td>
+						<td>
+							<INPUT TYPE="radio" id="beforeCollapseTrue" name="beforeCollapseRadio" checked onfocus="this.blur();">true;&nbsp;
+							<INPUT TYPE="radio" id="beforeCollapseFalse" name="beforeCollapseRadio" onfocus="this.blur();">false
+						</td>
+					</tr>
+					</TABLE>
+				</ul>
+				<ul class="remark">onNodeCreated 事件可以得到任意节点渲染完毕的信息</ul>
+				<ul class="event">
+				onNodeCreated 事件:&nbsp;&nbsp;<a id="onNodeCreated"><br/></a><br/>
+				</ul>
+				<ul class="event">
+				&nbsp;&nbsp;&nbsp;onClick 事件:&nbsp;&nbsp;<a id="onClickNode"><br/></a><br/>
+				</ul>
+				<ul class="event">
+				onRightClick 事件:&nbsp;&nbsp;<a id="onRightClickNode"><br/></a><br/>
+				</ul>
+				<ul class="event">
+				&nbsp;onMouseDown 事件:&nbsp;&nbsp;<a id="onMouseDownNode"><br/></a><br/>
+				</ul>
+				<ul class="event">
+				&nbsp;&nbsp;&nbsp;onMouseUp 事件:&nbsp;&nbsp;<a id="onMouseUpNode"><br/></a><br/>
+				</ul>
+				<ul class="event">
+				&nbsp;&nbsp;&nbsp;onChange 事件:&nbsp;&nbsp;<a id="onChangeNode"><br/></a><br/>
+				</ul>
+				<ul class="event">
+				&nbsp;&nbsp;&nbsp;&nbsp;onDrag 事件:&nbsp;&nbsp;<a id="onDragNode"><br/></a><br/>
+				</ul>
+				<ul class="event">
+				&nbsp;&nbsp;&nbsp;&nbsp;onDrop 事件:&nbsp;&nbsp;<a id="onDropNode"><br/></a><br/>
+				</ul>
+				<ul class="event">
+				&nbsp;&nbsp;onRename 事件:&nbsp;&nbsp;<a id="onRenameNode"><br/></a><br/>
+				</ul>
+				<ul class="event">
+				&nbsp;&nbsp;onRemove 事件:&nbsp;&nbsp;<a id="onRemoveNode"><br/></a><br/>
+				</ul>
+				<ul class="event">
+				&nbsp;&nbsp;onExpand 事件:&nbsp;&nbsp;<a id="onExpandNode"></a><br/>
+				</ul>
+				<ul class="event">
+				onCollapse 事件:&nbsp;&nbsp;<a id="onCollapseNode"></a><br/>
+				</ul>
+			</li>
+				
+		</div>	
+		</TD>
+	</TR>
+</TABLE>
+ </BODY>
+</HTML>

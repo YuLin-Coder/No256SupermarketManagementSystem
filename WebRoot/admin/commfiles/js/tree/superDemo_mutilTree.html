@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+ <HEAD>
+  <TITLE> ZTREE DEMO </TITLE>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" href="demoStyle/demo.css" type="text/css">
+  <link rel="stylesheet" href="zTreeStyle/zTreeStyle.css" type="text/css">
+  <script type="text/javascript" src="jquery-1.4.2.js"></script>
+  <script type="text/javascript" src="jquery-ztree-2.5.js"></script>
+  <script type="text/javascript" src="asyncData/demoData.js"></script>
+  <script type="text/javascript" src="demoTools.js"></script>
+  <SCRIPT LANGUAGE="JavaScript">
+  <!--
+	var zTree1, zTree2;
+	var setting;
+
+		setting = {
+			editable: true,
+			edit_renameBtn:false,
+			edit_removeBtn:false,
+			callback: {
+				click:	zTreeOnClick,
+				drop: zTreeOnDrop
+			}
+		};
+
+	$(document).ready(function(){
+		reloadTree();
+	});
+
+	var preSelectedNode1;
+	var preSelectedNode2;
+
+	function zTreeOnClick(event, treeId, treeNode) {
+		if (treeId=="treeDemo") {
+			if (preSelectedNode1 == treeNode) {
+				zTree1.cancelSelectedNode();
+				preSelectedNode1 = null;
+			} else {
+				preSelectedNode1 = treeNode;
+			}
+		} else {			
+			if (preSelectedNode2 == treeNode) {
+				zTree2.cancelSelectedNode();
+				preSelectedNode2 = null;
+			} else {
+				preSelectedNode2 = treeNode;
+			}
+		}
+	}
+
+	function zTreeOnDrop(event, treeId, treeNode, targetNode, moveType) {
+		preSelectedNode1 = zTree1.getSelectedNode();
+		preSelectedNode2 = zTree2.getSelectedNode();
+	}
+
+	function moveTreeL2R() {
+		moveTreeNode(zTree1, zTree2);
+	}
+	
+	function moveTreeR2L() {
+		moveTreeNode(zTree2, zTree1);
+	}
+	
+	function moveTreeNode(srcTree, targetTree) {
+		var srcNode = srcTree.getSelectedNode();
+		if (!srcNode) {
+			alert("请先选择需要移动的节点！");
+			return;
+		}
+		var targetNode = targetTree.getSelectedNode();
+		srcTree.removeNode(srcNode);		
+		targetTree.addNodes(targetNode, [srcNode]);
+		targetTree.selectNode(srcNode);		
+	}
+
+	function reloadTree() {
+		zTree1 = $("#treeDemo").zTree(setting, clone(zNodes, "-t1"));
+		zTree2 = $("#treeDemo2").zTree(setting, clone(zNodes, "-t2"));
+	}
+
+  //-->
+  </SCRIPT>
+ </HEAD>
+
+<BODY>
+<center class="headTitle">高级应用演示<span> —— 两棵树之间数据交互</span></center>
+<TABLE border=0 width="710" class="tb1">
+	<TR>
+		<TD colspan="3" align=left valign=top>
+		<div class="demoContent">
+			<li class="title focus">
+				<button class="ico books" onfocus="this.blur();"></button>两棵树之间数据交互说明
+				<ul class="operate" style="color:red">
+					1、从 v2.3 版本开始，可以直接使用鼠标在多棵树之间拖拽节点。
+				</ul>
+				<ul class="operate">
+					2、拖拽规则请参考“编辑演示”的说明。
+				</ul>
+				<ul class="operate">
+					3、重新点击已选中的节点，可以取消被选中状态；目标树没有被选中节点时，则直接转移到根节点。
+				</ul>
+				<ul class="operate">
+					4、转移节点代码请务先执行 srcTree.removeNode(srcNode) 方法，后执行 targetTree.addNodes(targetNode, [srcNode]) 方法。
+				</ul>
+				<ul class="operate" style="color:red">
+					5、需要使用 cancelSelectedNode() 方法的用户，请使用 2010-08-06 以及之后发布的 zTree 代码，之前的版本没有此方法。
+				</ul>
+				<ul></ul>
+			</li>
+		</div>
+		</TD>
+	</TR>
+	<TR>
+		<TD width=340px align=center valign=top>
+		<div class="zTreeDemoBackground">
+			<ul id="treeDemo" class="tree"></ul>
+		</div>		
+		</TD>
+		<TD width=30px align="center" valign="middle" class="operate">
+			<button class="ico moveNode" onfocus="this.blur();" title="移动节点 右->左" onclick="moveTreeL2R();"></button>
+			<br/><br/><br/><br/><br/><br/><br/><br/>
+			<button class="ico moveNodeR" onfocus="this.blur();" title="移动节点 左->右" onclick="moveTreeR2L();"></button>
+			<br/><br/><br/><br/><br/><br/><br/><br/>
+			<button class="ico refresh" onfocus="this.blur();" title="恢复初始状态" onclick="reloadTree();"></button>
+			<br/><br/><br/><br/><br/><br/><br/><br/>
+		</TD>
+		<TD width=340px align=center valign=top>
+		<div class="zTreeDemoBackground">
+			<ul id="treeDemo2" class="tree"></ul>
+		</div>		
+		</TD>
+	</TR>
+</TABLE>
+</BODY>
+</HTML>

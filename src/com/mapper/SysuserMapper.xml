@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.SysuserMapper">
+  <resultMap id="BaseResultMap" type="com.entity.Sysuser">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="uname" jdbcType="VARCHAR" property="uname" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="pwd" jdbcType="VARCHAR" property="pwd" />
+    <result column="utype" jdbcType="VARCHAR" property="utype" />
+    <result column="tel" jdbcType="VARCHAR" property="tel" />
+    <result column="age" jdbcType="VARCHAR" property="age" />
+    <result column="mbanswer" jdbcType="VARCHAR" property="mbanswer" />
+    <result column="question" jdbcType="VARCHAR" property="question" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="pubtime" jdbcType="VARCHAR" property="pubtime" />
+    <result column="tname" jdbcType="VARCHAR" property="tname" />
+    <result column="money" jdbcType="DOUBLE" property="money" />
+    <result column="idcard" jdbcType="VARCHAR" property="idcard" />
+    <result column="isdel" jdbcType="VARCHAR" property="isdel" />
+    <result column="xid" jdbcType="INTEGER" property="xid" />
+    <result column="profession" jdbcType="VARCHAR" property="profession" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, uname, sex, address, pwd, utype, tel, age, mbanswer, question, email, pubtime, 
+    tname, money, idcard, isdel, xid, profession
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sysuser
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sysuser
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.entity.Sysuser">
+    insert into sysuser (id, uname, sex, 
+      address, pwd, utype, 
+      tel, age, mbanswer, 
+      question, email, pubtime, 
+      tname, money, idcard, 
+      isdel, xid, profession
+      )
+    values (#{id,jdbcType=INTEGER}, #{uname,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR}, #{utype,jdbcType=VARCHAR}, 
+      #{tel,jdbcType=VARCHAR}, #{age,jdbcType=VARCHAR}, #{mbanswer,jdbcType=VARCHAR}, 
+      #{question,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{pubtime,jdbcType=VARCHAR}, 
+      #{tname,jdbcType=VARCHAR}, #{money,jdbcType=DOUBLE}, #{idcard,jdbcType=VARCHAR}, 
+      #{isdel,jdbcType=VARCHAR}, #{xid,jdbcType=INTEGER}, #{profession,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.entity.Sysuser">
+    insert into sysuser
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uname != null">
+        uname,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="pwd != null">
+        pwd,
+      </if>
+      <if test="utype != null">
+        utype,
+      </if>
+      <if test="tel != null">
+        tel,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="mbanswer != null">
+        mbanswer,
+      </if>
+      <if test="question != null">
+        question,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="pubtime != null">
+        pubtime,
+      </if>
+      <if test="tname != null">
+        tname,
+      </if>
+      <if test="money != null">
+        money,
+      </if>
+      <if test="idcard != null">
+        idcard,
+      </if>
+      <if test="isdel != null">
+        isdel,
+      </if>
+      <if test="xid != null">
+        xid,
+      </if>
+      <if test="profession != null">
+        profession,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uname != null">
+        #{uname,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="pwd != null">
+        #{pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="utype != null">
+        #{utype,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=VARCHAR},
+      </if>
+      <if test="mbanswer != null">
+        #{mbanswer,jdbcType=VARCHAR},
+      </if>
+      <if test="question != null">
+        #{question,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="pubtime != null">
+        #{pubtime,jdbcType=VARCHAR},
+      </if>
+      <if test="tname != null">
+        #{tname,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null">
+        #{money,jdbcType=DOUBLE},
+      </if>
+      <if test="idcard != null">
+        #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="isdel != null">
+        #{isdel,jdbcType=VARCHAR},
+      </if>
+      <if test="xid != null">
+        #{xid,jdbcType=INTEGER},
+      </if>
+      <if test="profession != null">
+        #{profession,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.entity.Sysuser">
+    update sysuser
+    <set>
+      <if test="uname != null">
+        uname = #{uname,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="pwd != null">
+        pwd = #{pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="utype != null">
+        utype = #{utype,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=VARCHAR},
+      </if>
+      <if test="mbanswer != null">
+        mbanswer = #{mbanswer,jdbcType=VARCHAR},
+      </if>
+      <if test="question != null">
+        question = #{question,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="pubtime != null">
+        pubtime = #{pubtime,jdbcType=VARCHAR},
+      </if>
+      <if test="tname != null">
+        tname = #{tname,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null">
+        money = #{money,jdbcType=DOUBLE},
+      </if>
+      <if test="idcard != null">
+        idcard = #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="isdel != null">
+        isdel = #{isdel,jdbcType=VARCHAR},
+      </if>
+      <if test="xid != null">
+        xid = #{xid,jdbcType=INTEGER},
+      </if>
+      <if test="profession != null">
+        profession = #{profession,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.entity.Sysuser">
+    update sysuser
+    set uname = #{uname,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      pwd = #{pwd,jdbcType=VARCHAR},
+      utype = #{utype,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      age = #{age,jdbcType=VARCHAR},
+      mbanswer = #{mbanswer,jdbcType=VARCHAR},
+      question = #{question,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      pubtime = #{pubtime,jdbcType=VARCHAR},
+      tname = #{tname,jdbcType=VARCHAR},
+      money = #{money,jdbcType=DOUBLE},
+      idcard = #{idcard,jdbcType=VARCHAR},
+      isdel = #{isdel,jdbcType=VARCHAR},
+      xid = #{xid,jdbcType=INTEGER},
+      profession = #{profession,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+ 
+  <select id="adminLogin" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sysuser
+    where utype like  concat('%',#{utype,jdbcType=VARCHAR},'%') and isdel="在用"  and uname = #{uname,jdbcType=VARCHAR} and pwd=#{pwd,jdbcType=VARCHAR} 
+  </select>
+  <select id="checkUname" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sysuser
+    where uname = #{uname,jdbcType=VARCHAR} 
+  </select>
+ <select id="getCount" parameterType="java.util.Map" resultType="int">
+    select  count(*) from sysuser  where 1=1
+   <if test="uname != null">
+      and  uname like  concat('%',#{uname,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="level != null">
+       and  level = #{level,jdbcType=INTEGER} 
+      </if>
+      <if test="utype != null">
+      and  utype = #{utype,jdbcType=VARCHAR}
+      </if>
+      <if test="mbanswer != null">
+      and  mbanswer = #{mbanswer,jdbcType=VARCHAR}
+      </if>
+      <if test="question != null">
+       and question = #{question,jdbcType=VARCHAR}
+      </if>
+      <if test="tname != null">
+       and tname like  concat('%',#{tname,jdbcType=VARCHAR},'%')
+      </if>
+      
+      <if test="clazz != null">
+       and  clazz like  concat('%',#{clazz,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="isdel != null">
+       and isdel like  concat('%',#{isdel,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="ctype != null">
+      and   ctype  like  concat('%',#{ctype,jdbcType=VARCHAR},'%')
+      </if>
+       <if test="smtype != null">
+       and  smtype like  concat('%',#{smtype,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="xid != null">
+       and xid = #{xid,jdbcType=INTEGER}
+      </if>
+  </select> 
+  <select id="getAll" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select  * from sysuser  where 1=1
+     <if test="uname != null">
+       and  uname like  concat('%',#{uname,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="level != null">
+       and  level = #{level,jdbcType=INTEGER} 
+      </if>
+      <if test="utype != null">
+      and  utype = #{utype,jdbcType=VARCHAR}
+      </if>
+      <if test="mbanswer != null">
+      and  mbanswer = #{mbanswer,jdbcType=VARCHAR}
+      </if>
+      <if test="question != null">
+       and question = #{question,jdbcType=VARCHAR}
+      </if>
+      <if test="tname != null">
+       and tname like  concat('%',#{tname,jdbcType=VARCHAR},'%')
+      </if>
+      
+      <if test="clazz != null">
+       and  clazz like  concat('%',#{clazz,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="isdel != null">
+       and isdel like  concat('%',#{isdel,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="ctype != null">
+      and   ctype  like  concat('%',#{ctype,jdbcType=VARCHAR},'%')
+      </if>
+       <if test="smtype != null">
+       and  smtype like  concat('%',#{smtype,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="xid != null">
+       and xid = #{xid,jdbcType=INTEGER}
+      </if>
+  </select> 
+   <select id="getByPage" parameterType="java.util.Map" resultMap="BaseResultMap">
+     select *from sysuser where 1=1
+      <if test="uname != null">
+     and  uname like  concat('%',#{uname,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="level != null">
+       and  level = #{level,jdbcType=INTEGER} 
+      </if>
+      <if test="utype != null">
+      and  utype = #{utype,jdbcType=VARCHAR}
+      </if>
+      <if test="mbanswer != null">
+      and  mbanswer = #{mbanswer,jdbcType=VARCHAR}
+      </if>
+      <if test="question != null">
+       and question = #{question,jdbcType=VARCHAR}
+      </if>
+      <if test="tname != null">
+       and tname like  concat('%',#{tname,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="clazz != null">
+       and  clazz like  concat('%',#{clazz,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="isdel != null">
+       and isdel like  concat('%',#{isdel,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="ctype != null">
+      and   ctype  like  concat('%',#{ctype,jdbcType=VARCHAR},'%')
+      </if>
+       <if test="smtype != null">
+       and  smtype like  concat('%',#{smtype,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="xid != null">
+       and xid = #{xid,jdbcType=INTEGER}
+      </if>
+     <if test="pageno!=null and pageSize!=null">
+     limit #{pageno},#{pageSize}
+     </if>
+     </select>
+  
+  
+</mapper>

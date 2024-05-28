@@ -1,0 +1,228 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+ <HEAD>
+  <TITLE> ZTREE DEMO </TITLE>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" href="demoStyle/demo.css" type="text/css">
+  <link rel="stylesheet" href="zTreeStyle/zTreeStyle.css" type="text/css">
+  <script type="text/javascript" src="jquery-1.4.2.js"></script>
+  <script type="text/javascript" src="jquery-ztree-2.5.js"></script>
+  <script type="text/javascript" src="demoTools.js"></script>
+  <style type="text/css">
+  .test {
+  	margin: 0 0 0 5px;
+  }
+  .radioBtn {
+  	height: 16px;
+ 	vertical-align: middle;
+  }
+  .checkboxBtn {
+ 	vertical-align: middle;
+  }
+  </style>
+  <SCRIPT LANGUAGE="JavaScript">
+  <!--
+	var zTree1;
+
+	var IDMark_A = "_a";
+	
+	var setting= {
+		//expandSpeed:"",
+		fontCss: setFontCss,
+		addDiyDom: addDiyDom,
+		callback: {
+			beforeClick: zTreeOnBeforeClick,
+			beforeExpand: zTreeOnBeforeExpand,
+			expand: zTreeOnExpand
+		}
+	};
+
+	var zNodes =[
+	 	{id:1, name:"CPU",
+		 	nodes:[
+		 	       {id:11, name:"Intel"},
+		 	       {id:12, name:"AMD"}
+			]},
+	 	{id:2, name:"主板",
+	 		nodes:[
+		 	       {id:21, name:"华硕"},
+		 	       {id:22, name:"技嘉"},
+		 	       {id:23, name:"微星"},
+		 	       {id:24, name:"七彩虹"},
+		 	       {id:25, name:"映泰"}
+			]},
+		{id:3, name:"显卡",
+	 		nodes:[
+		 	       {id:31, name:"华硕"},
+		 	       {id:32, name:"索泰"},
+		 	       {id:33, name:"微星"},
+		 	       {id:34, name:"影驰"},
+		 	       {id:35, name:"七彩虹"}
+			]},
+		{id:4, name:"内存",
+	 		nodes:[
+		 	       {id:41, name:"金士顿"},
+		 	       {id:42, name:"威刚"},
+		 	       {id:43, name:"宇瞻"},
+		 	       {id:44, name:"三星"},
+		 	       {id:45, name:"现代"}
+			]},
+		{id:5, name:"硬盘",
+	 		nodes:[
+		 	       {id:51, name:"希捷"},
+		 	       {id:52, name:"西部数据"},
+		 	       {id:53, name:"日立"},
+		 	       {id:54, name:"三星"},
+		 	       {id:55, name:"东芝"},     
+		 	       {id:56, name:"富士通"}
+			]}
+	 	];
+
+
+	$(document).ready(function(){
+		reloadTree();
+	});
+
+	function setFontCss(treeId, treeNode) {
+		if (treeNode.level==0 && treeNode.oldName && treeNode.oldName != treeNode.name) {
+			return {"color":"#2C8A24"};
+		} else if (treeNode.level==0) {
+			return {"color":"blue"};
+		} else {
+			return {"color":"#000000"};
+		}
+	}
+
+	var curExpandNode = null;
+	function zTreeOnBeforeClick(treeId, treeNode) {
+		if (treeNode.level == 0 && !treeNode.open) {
+			zTree1.expandNode(treeNode, true);
+			if (curExpandNode && curExpandNode.open==true) {
+				zTree1.expandNode(curExpandNode, false);
+			}
+			curExpandNode = treeNode;
+		} else if (treeNode.level == 1) {
+			var btn = $("#radio_" + treeNode.id).attr("checked", true);
+			checkBrand(treeNode, btn);
+		}
+		return false;
+	}
+	function zTreeOnBeforeExpand(treeId, treeNode) {
+		if (curExpandNode && curExpandNode.open==true) {
+			zTree1.expandNode(curExpandNode, false);
+		}
+	}
+
+	function zTreeOnExpand(event, treeId, treeNode) {
+		curExpandNode = treeNode;
+	}
+
+	function addDiyDom(treeId, treeNode) {
+		var aObj = $("#" + treeNode.tId + IDMark_A);
+		if (treeNode.level == 0) {
+			var editStr = "<input type='checkbox' class='checkboxBtn' id='checkbox_" +treeNode.id+ "' onfocus='this.blur();'></input>";
+			aObj.before(editStr);
+			var btn = $("#checkbox_"+treeNode.id);
+			if (btn) btn.bind("change", function() {checkAccessories(treeNode, btn);});
+		} else if (treeNode.level == 1) {
+			var editStr = "<input type='radio' class='radioBtn' id='radio_" +treeNode.id+ "' name='radio_"+treeNode.parentNode.id+"' onfocus='this.blur();'></input>";
+			aObj.before(editStr);
+			var btn = $("#radio_"+treeNode.id);
+			if (btn) btn.bind("click", function() {checkBrand(treeNode, btn);});
+		}
+	}
+
+	function checkAccessories(treeNode, btn) {
+		var checkedRadio = getCheckedRadio("radio_"+treeNode.id);
+		if (btn.attr("checked")) {
+			if (!checkedRadio) {
+				$("#radio_" + treeNode.nodes[0].id).attr("checked", true);
+			}
+		} else {
+			checkedRadio.attr("checked", false);
+		}
+		addBrandName(treeNode);
+	}
+
+	function checkBrand(treeNode, btn) {
+		if (btn.attr("checked")) {
+			var pObj = $("#checkbox_" + treeNode.parentNode.id);
+			if (!pObj.attr("checked")) {
+				pObj.attr("checked", true);
+			}
+			addBrandName(treeNode.parentNode);
+		}
+	}
+	
+	function addBrandName(treeNode) {
+		if (!treeNode.oldName) {
+			treeNode.oldName = treeNode.name;
+		}
+		var brandName = "";
+		if ($("#checkbox_" + treeNode.id).attr("checked")) {
+			var checkedBrand = getCheckedRadio("radio_"+treeNode.id);
+			var brandNode = zTree1.getNodeByParam("id", parseInt(checkedBrand.attr("id").replace("radio_", "")));
+			if (brandNode) brandName = " - " + brandNode.name;
+		}
+		treeNode.name = treeNode.oldName + brandName;
+		zTree1.updateNode(treeNode);
+	}
+
+	function getCheckedRadio(radioName) {  
+		var r = document.getElementsByName(radioName);
+		for(var i=0; i<r.length; i++)    { 
+			if(r[i].checked)    { 
+				return $(r[i]); 
+			} 
+		}         
+	    return null;       
+	}   
+
+	function reloadTree() {
+		zTree1 = $("#treeDemo").zTree(setting, clone(zNodes, ""));
+	}
+	
+
+  //-->
+  </SCRIPT>
+ </HEAD>
+
+<BODY>
+<center class="headTitle">高级应用演示<span> —— checkbox & radio 共存</span></center>
+<TABLE border=0 width="700" class="tb1">
+	<TR>
+		<TD width=340px align=center valign=top>
+		<div class="zTreeDemoBackground">
+			<ul id="treeDemo" class="tree"></ul>
+		</div>		
+		</TD>
+		<TD width=360px align=left valign=top>
+		<div class="demoContent">
+			<li class="title focus">
+				<button class="ico star" onfocus="this.blur();"></button>checkbox & radio 共存说明
+				<ul class="remark">1、演示注释</ul>
+				<ul class="event">
+					<li>&nbsp;&nbsp;点击不同的节点试试看。</li>
+					<li>&nbsp;&nbsp;点击 checkbox 或 radio 试试看。</li>
+				</ul>
+				<ul class="remark">2、使用自定义控件的接口实现</ul>
+				<ul class="event">
+					<li>&nbsp;&nbsp;既然需要共存，也就不可能使用 zTree 内部的 checkbox 或 radio 的 check 规则，所以一定要使用自定义控件的接口。</li>
+					<li>&nbsp;&nbsp;参数：setting.addDiyDom</li>
+					<li>&nbsp;&nbsp;每组控件的 check 规则，完全根据你自己的需求，自行设定。</li>
+				</ul>
+				<ul class="remark">3、随意更新文字颜色</ul>
+				<ul class="event">
+					<li>&nbsp;&nbsp;通过利用 setting.fontCss 参数可以针对节点在不同状态时，设置不同的颜色。</li>
+				</ul>
+				<ul class="remark">4、每次只展开一个节点的尝试</ul>
+				<ul class="event">
+					<li>&nbsp;&nbsp;利用 beforeClick、beforeExpand、expand 这三种事件，可以完全实现每次只能展开一个父节点的功能，对这个功能有兴趣的朋友可以参考一下。</li>
+				</ul>
+			</li>
+		</div>	
+		</TD>
+	</TR>
+</TABLE>
+</BODY>
+</HTML>

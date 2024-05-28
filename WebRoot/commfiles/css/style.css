@@ -1,0 +1,412 @@
+td {font-family: "宋体", "Arial", "Helvetica", "sans-serif";font-size: 12px;}
+hr{ border:1px solid #c9dff0; height:1px; width:98%; text-align:centet}
+form {	margin: 0px;}
+input {font-size: 12px; height:18px; }
+select {	background-color: #fafafa;	font-size: 12px;}
+textarea {	font-size: 12px;}
+
+.btn {	
+	PADDING-RIGHT: 2px;	
+	PADDING-LEFT: 2px;
+	FONT-SIZE: 12px;		
+	CURSOR: hand;
+	COLOR: black;
+	PADDING-TOP: 2px;
+	BORDER-TOP: #7b9ebd 1px solid;
+	BORDER-RIGHT: #7b9ebd 1px solid;
+	BORDER-BOTTOM: #7b9ebd 1px solid;
+	BORDER-LEFT: #7b9ebd  1px solid;
+	background-image:url("/marnav/commfiles/images/navbg.gif");
+}
+.keyText{font-weight:bold;	}
+.subtitle{
+	font-weight:bold;
+	align:left;
+	padding-left:5px;
+	vertical-align:middle;
+	color:gray;
+	height:30px;
+	line-height:30px;
+}
+
+/* 画面logo部份的背景图---开始 */
+.header {	background: url(/marnav/commfiles/images/headbg.gif) repeat-x;}
+.headerTD {	background: url(/marnav/commfiles/images/headbgr.gif) no-repeat right top;}
+.headerTD A {color: #CC0066}
+.headerLogo {	padding-top: 0px;	padding-bottom: 0px;	padding-left: 0px;}
+.headerHelp,.headerHelp A,.headerHelp A:hotelInfoed {	color: #393939;}
+/* 画面logo背景图---结束 */
+.top {	BACKGROUND-COLOR: #f3f3f3;border: 1px solid #999;padding: 2px;}
+
+.box {
+	background-color: #fafafa;
+	border: 1px solid #999;
+}
+.boxAmount{
+	background-color: #fafafa;
+	border: 1px solid #999;
+	text-align:right;
+	padding-right:2px;
+}
+.boxdisabled {
+	border: 1px solid #ddd;
+	background-color: #f3f3f3;
+	color: #000;
+}
+.wholebox {
+	background-color: #EEEEEE;
+}
+
+.boxfocus {
+	BACKGROUND-COLOR: #0058a9;
+	BORDER-BOTTOM: #333333 1px inset;
+	BORDER-LEFT: #333333 1px inset;
+	BORDER-RIGHT: #333333 1px inset;
+	BORDER-TOP: #333333 1px inset;
+	COLOR: white
+}
+
+.FormTitle {
+	FONT-SIZE: 12px;
+	COLOR: #000000;
+	FONT-FAMILY: "Arial", "Helvetica", "sans-serif";
+	background: #8CBAEC url(/marnav/commfiles/images/th.gif) left bottom no-repeat;
+	text-indent: 0.5em;
+	height: 20px;
+	line-height: 20px;
+	font-weight: bold;
+}
+
+.FormButton {
+
+	z-index:10
+
+}
+
+/*  指定画面中的按钮栏样式 */
+#tool_bar {
+	width:100%;
+	font-size:10pt;
+	COLOR: #000000;;
+}
+
+/*TABLE TOP CSS*/
+.shopnetTitle {
+	BORDER-RIGHT: 1px;
+	BORDER-TOP: 1px;
+	BORDER-LEFT: 1px;
+	BORDER-BOTTOM: 1px;
+	BACKGROUND-COLOR: #CFEBF9;
+	color:#577EA7;
+	font-weight:bold;
+	 background-image:url(/marnav/commfiles/images/table-td-bg.gif); background-repeat:repeat-x;
+	 height:27px;
+}
+
+.shopnetBody {
+	BORDER-RIGHT: 1px;;
+	BORDER-TOP: 1px;;
+	BORDER-LEFT: 1px;;
+	BORDER-BOTTOM: 1px;
+	BACKGROUND-COLOR: #FFFFFF;;
+	color: #333333;
+}
+
+.shopnetList {
+	border: 1px solid #ccc;
+}
+
+.shopnetList th {
+	background-color: #ff9d7f;
+	border: 1px #ff9d7f solid;
+	border-bottom: 1px #f00 solid;
+}
+
+.mainbody {
+	margin: 10px 0px;
+	background-image: url(/marnav/commfiles/images/mainbodybg.gif);
+	background-repeat: repeat-y;
+	background-position: center;
+}
+
+.container {
+	text-align: center;
+	vertical-align: middle;
+}
+
+.container DIV {
+	margin: 0 auto;
+	clear: both;
+	vertical-align: bottom;
+}
+
+TABLE.tableform {
+	BACKGROUND-COLOR: #ffffff;
+	border: 1px solid #93C3EE;
+	padding: 2px;
+	height:30px;
+	margin:5px 0
+}
+
+TABLE.tableform TD.label {padding-left:5px;}
+TABLE.tableform TR.tableheader TD {background-color: #456795;color: #FFFFFF;border-bottom: 0px;}
+.FrameLeft {background: url(/marnav/commfiles/images/Frmleft1.gif) top right repeat-y;}
+.FrameLeft IFRAME {	background-color: transparent;}
+.bodytree {background-color: transparent;border-bottom:1px solid #D4D4D4; margin:0px;}
+fieldset {margin: 2px;padding: 2px;border: 1px solid #aaa;}
+legend {color: #006CD8;text-align: left;}
+
+.xscroll {
+	overflow-x: auto;
+	height: auto;
+	SCROLLBAR-FACE-COLOR: #E0F0FC;
+	SCROLLBAR-SHADOW-COLOR: #EAF5FD;
+	SCROLLBAR-3DLIGHT-COLOR: #808080;
+	SCROLLBAR-ARROW-COLOR: #808080;
+	SCROLLBAR-DARKSHADOW-COLOR: #808080;
+	buttonface: #666666;
+}
+
+.xscrollhidden {
+	overflow-x: auto;
+	display: none;
+	SCROLLBAR-FACE-COLOR: #E0F0FC;
+	SCROLLBAR-SHADOW-COLOR: #EAF5FD;
+	SCROLLBAR-3DLIGHT-COLOR: #808080;
+	SCROLLBAR-ARROW-COLOR: #808080;
+	SCROLLBAR-DARKSHADOW-COLOR: #808080;
+	buttonface: #666666;
+}
+
+
+
+.mytab2 {
+	font-size: 12px;
+	line-height: 150%;
+	text-decoration: none;
+	word-wrap: break-word;
+	border:#A3CCE7 solid 1px; border-bottom:0; border-right:0;
+	line-height:175%;
+	margin:0px 0;	
+}
+.mytab2 td{ padding:0px 0px; border:#A3CCE7 solid 1px; border-left:0; border-top:0;}
+.mytab2 th {
+	background-color: #ff9d7f;
+	border: 1px #ff9d7f solid;
+	border-bottom: 1px #f00 solid;
+}
+.mytab2 tr {
+	text-align: expression((     this .     sectionRowIndex ==     0) ?    
+		'center' :     '' );
+	background-color: expression((     this .     sectionRowIndex ==     0)
+		?   
+		 '#CBE2F4' :((     this .     sectionRowIndex %     2 ==     0 ) ?    
+		'#EFF5FB' :     '#FBFBFB' ) );
+}
+.mytab2_a {
+	font-size: 12px;
+	line-height: 150%;
+	text-decoration: none;
+	word-wrap: break-word;
+	border:#A3CCE7 solid 1px; border-bottom:0; border-right:0;
+		line-height:175%;
+	margin:0px 0;background-color:#FFFFFF;
+}
+.mytab2_a td{ padding:0px 0px; border:#A3CCE7 solid 1px; border-left:0; border-top:0;}
+.mytab2_b {
+	font-size: 12px;
+	line-height: 150%;
+	text-decoration: none;
+	word-wrap: break-word;
+	border:#A3CCE7 solid 1px;
+	margin:0px 0;
+	background-color:#FFFFFF;
+		
+}
+.mytab2_b td{line-height:190%;}
+.mytab2_c {
+	font-size: 12px;
+	line-height: 150%;
+	text-decoration: none;
+	word-wrap: break-word;
+	border:#dde8f3 solid 1px; border-bottom:0; border-right:0;
+	line-height:175%;
+	margin:0px 0;	
+}
+.mytab2_c td{ padding:0px 0px; border:#dde8f3 solid 1px; border-left:0; border-top:0;}
+.mytab2_c tr {
+	text-align: expression((     this .     sectionRowIndex ==     0) ?    
+		'center' :     '' );
+	background-color: expression((     this .     sectionRowIndex ==     0)
+		?   
+		 '#eef4fa' :((     this .     sectionRowIndex %     2 ==     0 ) ?    
+		'#EFF5FB' :     '#FBFBFB' ) );
+}
+.mytab2_c p{ margin:0px 0}
+
+
+.mytab {
+	font-size: 12px;
+	line-height: 150%;
+	text-decoration: none;
+	word-wrap: break-word;
+	border:#A3CCE7 solid 1px; border-bottom:0; border-right:0;
+	line-height:175%;
+	margin:5px 0;	
+}
+.mytab td{ padding:2px 5px; border:#A3CCE7 solid 1px; border-left:0; border-top:0;}
+.mytab th {
+	background-color: #ff9d7f;
+	border: 1px #ff9d7f solid;
+	border-bottom: 1px #f00 solid;
+}
+.mytab tr {
+	text-align: expression((     this .     sectionRowIndex ==     0) ?    
+		'center' :     '' );
+	background-color: expression((     this .     sectionRowIndex ==     0)
+		?   
+		 '#CBE2F4' :((     this .     sectionRowIndex %     2 ==     0 ) ?    
+		'#EFF5FB' :     '#FBFBFB' ) );
+}
+.mytab_a {
+	font-size: 12px;
+	line-height: 150%;
+	text-decoration: none;
+	word-wrap: break-word;
+	border:#A3CCE7 solid 1px; border-bottom:0; border-right:0;
+		line-height:175%;
+	margin:5px 0;background-color:#FFFFFF;
+}
+.mytab_a td{ padding:2px 5px; border:#A3CCE7 solid 1px; border-left:0; border-top:0;}
+.mytab_b {
+	font-size: 12px;
+	line-height: 150%;
+	text-decoration: none;
+	word-wrap: break-word;
+	border:#A3CCE7 solid 1px;
+	margin:5px 0;
+	background-color:#FFFFFF;
+		
+}
+.mytab_b td{line-height:190%;}
+.mytab_c {
+	font-size: 12px;
+	line-height: 150%;
+	text-decoration: none;
+	word-wrap: break-word;
+	border:#dde8f3 solid 1px; border-bottom:0; border-right:0;
+	line-height:175%;
+	margin:5px 0;	
+}
+.mytab_c td{ padding:2px 5px; border:#dde8f3 solid 1px; border-left:0; border-top:0;}
+.mytab_c tr {
+	text-align: expression((     this .     sectionRowIndex ==     0) ?    
+		'center' :     '' );
+	background-color: expression((     this .     sectionRowIndex ==     0)
+		?   
+		 '#eef4fa' :((     this .     sectionRowIndex %     2 ==     0 ) ?    
+		'#EFF5FB' :     '#FBFBFB' ) );
+}
+.mytab_c p{ margin:5px 0}
+/* 定义画面中readonly属性的text控件背景色 */
+.readOnlyView{
+	border:1px solid #7F9DB9;
+}
+.mav-text{ color:#057FC8}
+
+/*修改密码*/
+.top_password {BACKGROUND-IMAGE: url(/marnav/commfiles/images/login/btbg.gif); BACKGROUND-REPEAT: repeat-x; HEIGHT: 27px}
+.top_password_content {MARGIN: 0px ; ;PADDING-RIGHT: 8px; PADDING-LEFT: 8px; MIN-HEIGHT: 10px; BACKGROUND: url(/marnav/commfiles/images/login/pword-bg.jpg) #edf6fb repeat-x 0px 0px;   COLOR: #4d9ecf; }
+.text3{color:#557A8D;}
+
+/*高级查询*/
+.AdvForm{border-right:dotted 1px #ccc;}
+.SmNote{ padding:10px;}
+.SmNote h1{ background-image:url(/marnav/commfiles/images/gl_c.gif); background-repeat:no-repeat; height: auto; font-size:14px; padding-left:20px; background-position:left 3px; margin:0; border-bottom:#93c3ee solid 1px;}
+.SmNote h2{ font-size:12px; padding:0; margin:10px 0; color:#0099CC; font-weight:100}
+.SmNote p{ line-height:20px; padding:0; margin:0}
+
+/*新增*/
+.left{ float:left}
+.right{ float:right}
+.spyj{ height:100px; display:block}
+.red{ color:#FF0000}
+.percent{
+	font-size:15px;
+}
+/*link*/
+	/*橙色字，用于特殊链接样式*/
+	a.link_a:link {color: #FF6600;cursor:hand}
+	a.link_a:hotelInfoed {	color:#FF6600 ;cursor:hand }
+	a.link_a:hover {	color: #0293E2;cursor:hand }
+	a.link_a:active {	color: #166B80;cursor:hand }
+	/*红色字，用于特殊链接样式*/
+	a.redlink:link { 	color: red; text-decoration: underline; } 
+	a.redlink:hotelInfoed { color: red; 	text-decoration: underline; } 
+	a.redlink:hover { text-decoration: underline; } 
+	a.redlink:active { text-decoration: underline; }
+	/*蓝色字，用于特殊链接样式*/
+	a.bluelink:link { color: blue; text-decoration: underline; } 
+	a.bluelink:hotelInfoed { color: blue; text-decoration: underline; } 
+	a.bluelink:hover { text-decoration: underline; } 
+	a.bluelink:active { text-decoration: underline; }
+	/*默认链接样式*/
+	a:link {	color: #0293E2;cursor:hand }
+	a:hotelInfoed {	color: #0293E2;cursor:hand }
+	a:hover {	color: #166B80; cursor:hand}
+	a:active {	color: #166B80; cursor:hand}
+
+/*
+
+.optionbar {background: #C1CEDC;}
+
+.optionOff {
+	color: #626B7B;
+	text-align: center;
+	cursor: hand;
+	background: url(/marnav/commfiles/images/optionbgoff.gif) left no-repeat;
+}
+
+
+.optionOn {
+	color: #000;
+	text-align: center;
+	cursor: hand;
+	background: url(/marnav/commfiles/images/optionbgon.gif) left no-repeat;
+}
+.optionOff A,.optionOff A:link,.optionOff A:hotelInfoed,.optionOff A:hover,.optionOff A:active
+	{
+	color: #626B7B;
+	text-decoration: none;
+	height: 19px;
+	padding-top: 5px;
+	display: block;
+	background: url(/marnav/commfiles/images/optionbgoffr.gif) top right no-repeat;
+	padding-left: 14px;
+	padding-right: 14px;
+}
+
+.optionOn A,.optionOn A:link,.optionOn A:hotelInfoed,.optionOn A:hover,.optionOn A:active
+	{
+	color: #000;
+	text-decoration: none;
+	display: block;
+	height: 19px;
+	padding-top: 5px;
+	background: url(/marnav/commfiles/images/optionbgonr.gif) top right no-repeat;
+	padding-left: 14px;
+	padding-right: 14px;
+}
+
+
+A.Treeview {color: #000000;font-size: 9pt;padding-left: 3px;text-decoration: none;}
+A:hotelInfoed .Treeview {
+	color: #000000;
+	font-size: 9pt;
+	padding-left: 3px;
+	text-decoration: none;
+}*/
+.js3{ font-size:14px; font-weight:bold;}
+#box{width:290px; height:500px; overflow:scroll; overflow-x:hidden;}/*层以纵横滚动条方式显示*/
+
+.input_bottom{ border-bottom:solid #666666 1px;}/*输入表单以下划线方式显示*/

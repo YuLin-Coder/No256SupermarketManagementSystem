@@ -1,0 +1,316 @@
+body {
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	margin: 0px;
+	background-color: #F6FBFD;
+	font-family: Verdana, Arial,Vrinda,Tahoma;
+	line-height: 175%;
+	font-size:12px;
+	color:#666;
+}
+html {
+
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	margin: 0px;
+}
+a {color: #555;	text-decoration:none;}
+a:hover {color: #0099CC;}
+
+img { border:0; display:inline;}
+ul{
+    margin:0;
+	padding:0;
+	list-style-position: outside;
+	list-style-type: none;
+}
+li,div{margin:0;padding:0;}
+
+
+
+/*TOPFRAME页面*/
+.header_content {
+	margin: 0 auto;
+	padding:0px;
+	width: 100%;
+	background-image:url(/marnav/commfiles/images/index_top.jpg); height:104px; background-repeat:no-repeat;
+	height:87px; overflow:hidden
+}
+.header_content .logo {
+	height: 50px;
+	width: 60%;
+	float: left;
+}
+.header_content .right_nav {
+	float: right;
+	width: 180px;
+	height: 50px;
+}
+
+.right_nav a{color:#006ED4; font-variant:normal;}
+.text_left a{
+	float: left;
+	padding-left:20px;
+	width: 70px;
+	background-image:url(/marnav/commfiles/images/level_up_z.gif);
+	background-repeat:no-repeat;
+	margin-top:10px;
+	background-position:0px 0px;
+	display:block; color:#0078de
+}
+
+.text_left a:hover {
+	float: left;
+	padding-left:20px;
+	width: 70px;
+	background-image:url(/marnav/commfiles/images/level_up.gif);
+	background-repeat:no-repeat;
+	margin-top:10px;
+	background-position:0px 0px;
+	display:block; color:#fd6b00;
+}
+
+.right_nav .text_right a{
+	float: left;
+	width: 67px;
+	display: inline;
+	text-align: right;
+	background-image:url(/marnav/commfiles/images/help.gif);
+	background-repeat:no-repeat;
+		margin-top:10px;
+	background-position:0px 0;
+	display:block;
+}
+
+.right_nav .text_right a:hover{
+	float: left;
+	width: 67px;
+	display: inline;
+	text-align: right;
+	background-image:url(/marnav/commfiles/images/help_z.gif);
+	background-repeat:no-repeat;
+		margin-top:10px;
+	background-position:0px 0;
+	display:block;color:#fd6b00;
+}
+
+
+
+/*leftframe.html*/
+#left_content {
+	clear: both;
+	width: 199px;
+}
+#left_content #user_info {
+	background-image: url(/marnav/commfiles/images/manage_r2_c1.jpg);
+	background-repeat: no-repeat;
+	height: auto;
+	padding: 10px 0 0 85px;
+}
+#left_content #user_info a{
+    color:#0099CC;
+}
+#left_content #main_nav {
+	width: 199px;
+	background-image: url(/marnav/commfiles/images/left_nav_bg.jpg);
+	background-repeat: repeat-y;
+}
+#left_main_nav {
+	float: left;
+	width: 25px;
+	line-height: 13px;
+	color:#0099CC;
+}
+#left_main_nav li{
+	height:69px;
+	width:12px;
+	text-align: center;
+	padding: 7px 6px 0 7px;
+}
+.left_back{
+	background-image: url(/marnav/commfiles/images/manage_r7_c2.jpg);
+	background-repeat: no-repeat;
+	cursor:pointer;
+}
+.left_back_onclick{
+	background-image: url(/marnav/commfiles/images/manage_r6_c2.jpg);
+	background-repeat: no-repeat;
+	color:#333333;
+}
+#left_main_nav a{
+    color:#0099CC;
+}#right_main_nav {
+	width: 190px;
+	float: right;
+	background-color: #FFFFFF;
+	height: 450px;
+	text-align: left;
+	border:#A3CCE7 solid 1px;
+	padding-bottom:10px;
+}
+.list_tilte {
+	background-image: url(/marnav/commfiles/images/list_title.gif);
+	background-repeat: no-repeat;
+	margin: 0 auto;
+	clear: both;
+	height: 22px;
+	width: 140px;
+	padding-left: 30px;
+	font-weight: bold;
+	color: #0099CC;
+	margin-top: 9px;
+	cursor:pointer;
+}
+.list_tilte_onclick {
+	background-image: url(/marnav/commfiles/images/list_title_onclick.gif);
+	background-repeat: no-repeat;
+	margin: 0 auto;
+	clear: both;
+	height: 22px;
+	width: 140px;
+	padding-left: 30px;
+	font-weight: bold;
+	color: #0099CC;
+	margin-top: 9px;
+	cursor:pointer;
+}
+.list_detail {
+	margin: 0 auto;
+}
+.list_detail li{
+	list-style-image: url(/marnav/commfiles/images/direct_blue.gif);
+	list-style-position: inside;
+	padding: 0 0 0 13px;
+    }
+	
+#switchpic {
+	width: 6px;
+	cursor:pointer;
+	clear: both;
+	vertical-align: bottom;
+	margin-top: 220px;
+}
+
+/*顶部主菜单样背景*/
+#nav {
+	width:100%;
+	float:left;
+	background-image: url(/marnav/commfiles/images/nav_bg.jpg);
+}
+#nav ul { 
+      margin:0; 
+	  list-style:none; 
+	  padding: 0;
+ }
+#nav li {
+    width:72px;
+     float:left; 
+	 margin:0; 
+	 padding-top:2px;
+	 padding-left:5px;
+	 padding-right:5px;
+	 line-height:24px;
+	 font-weight:bold;
+	 text-align:center
+}
+
+.bg_image{
+	 background: url(/marnav/commfiles/images/manage_r2_c14.jpg) no-repeat;
+	 cursor:pointer;
+	 color:#FFFFFF
+}
+.bg_image_onclick{
+	 background: url(/marnav/commfiles/images/manage_r2_c13.jpg) no-repeat;
+	 color:#0478C3;
+}
+#sub_info {
+	width: 99%;
+	float:left;
+	background-image: url(/marnav/commfiles/images/manage_r3_c11.jpg);
+	height: 27px;
+	background-repeat: repeat-x;
+	padding: 5px 0 0 0;
+	border:#93C3EE solid 1px;
+	border-top:0
+}
+#man_zone {
+	height: 445px;
+	width: 99%;
+	border: 1px solid #B4C9C6;
+	margin: 6px 0 0 0;
+	background-color:#FFFFFF;
+	padding: 5px 0 5px 0;
+}
+#man_zone table{
+    background-color:#DBE6E3;
+}
+#man_zone table tr{
+    background-color:#fff;
+}
+
+.STYLE1 {
+	font-size: 12px;
+	color:#73938E;
+	font-weight:bold;
+}
+.STYLE3 {font-size: 13px; font-weight: bold; color:#3F6A82; height:25px; background-image:url(/marnav/commfiles/images/bg.gif)}
+
+
+/*主按钮和次按钮*/
+.btn3_mouseup {   
+BORDER: solid 1px #53A1E8; FONT-SIZE: 12px; CURSOR: hand; PADDING-TOP: 2px; height:24px; background-image:url(/marnav/commfiles/images/anl.gif); background-repeat:repeat-x;color:#05609C; font-variant:normal; font-weight:bold; text-align:center;}
+.btn2_mouseup {   
+FONT-SIZE: 12px; CURSOR: hand; PADDING-TOP: 2px; width:70px; height:18px; background-image:url(/marnav/commfiles/images/fkck.gif); border:none}
+
+.wordwrap
+{
+     word-wrap:break-word;
+     word-break:break-all;
+    -moz-binding: url('./wordwrap.xml#wordwrap');
+     overflow: hidden;
+}
+	
+/*分页*/
+
+        .pagination {
+            background-color: #f2f8ff;
+            padding: 10px;
+            text-align: right;
+        }
+        /*每个页码的样式*/
+        .pagination a {
+            color: #6faefc;
+            border: 1px #a7dcff solid;
+            background-color: #ddecff;
+            padding:2px 3px 2px 3px;
+        }
+        /*页码鼠标经过时的样式*/
+        .pagination a:hover {
+            color: #FFFFFF;
+            border: 1px #006699 solid;
+            background-color: #5FAFD6;
+        }
+        /*当前页码的样式*/
+        .pagination .CurrentPage {
+            color: #CC0066;
+            border: 1px #006699 solid;
+            background-color: #CDDCE7;
+            padding: 4px 8px 4px 8px;
+        }
+        .pagination .PageEllipsis {
+        }
+        .pagination .PagePrevious {
+        }
+        .pagination .PageNext {
+        }
+        .pagination .PageDisabled {
+        }
+		
+
+
+
+

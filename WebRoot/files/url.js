@@ -1,0 +1,1 @@
+var kefuhostlink = 'http://wwww.54kefu.net/';

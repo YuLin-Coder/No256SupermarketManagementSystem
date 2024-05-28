@@ -1,0 +1,265 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+ <HEAD>
+  <TITLE> ZTREE DEMO </TITLE>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" href="demoStyle/demo.css" type="text/css">
+  <link rel="stylesheet" href="skinStyle/18x18/zTreeStyle.css" type="text/css">
+  <link rel="stylesheet" href="skinStyle/18x18/zTreeIcons.css" type="text/css">
+  <script type="text/javascript" src="jquery-1.4.2.js"></script>
+  <script type="text/javascript" src="jquery-ztree-2.5.js"></script>
+  <script type="text/javascript" src="demoTools.js"></script>
+  <SCRIPT LANGUAGE="JavaScript">
+  <!--
+	var zTree1;
+
+		var setting = {
+			showLine: true
+		};
+
+		
+	var zNodesFlag = [ {
+		name : "联合国",
+		iconSkin : "flagUN",
+		open : true,
+		nodes : [ {
+			name : "中国",
+			iconSkin : "flagCHN"
+		}, {
+			name : "美国",
+			iconSkin : "flagUSA"
+		}, {
+			name : "俄罗斯",
+			iconSkin : "flagRUS"
+		}, {
+			name : "德国",
+			iconSkin : "flagDE"
+		} ]
+	}, {
+		name : "红十字会",
+		iconSkin : "flagRedCross",
+		open : true,
+		nodes : [ {
+			name : "加拿大",
+			iconSkin : "flagCA"
+		}, {
+			name : "澳大利亚",
+			iconSkin : "flagAU"
+		}, {
+			name : "日本",
+			iconSkin : "flagJPN"
+		}, {
+			name : "韩国",
+			iconSkin : "flagROK"
+		} ]
+	}, {
+		name : "非洲联盟",
+		iconSkin : "flagAU",
+		open : true,
+		nodes : [ {
+			name : "南非",
+			iconSkin : "flagRSA"
+		}, {
+			name : "埃及",
+			iconSkin : "flagEGY"
+		}, {
+			name : "喀麦隆",
+			iconSkin : "flagCM"
+		}, {
+			name : "加纳",
+			iconSkin : "flagGH"
+		} ]
+	} ];	
+	var zNodesICandy = [ {
+		name : "我的收藏夹",
+		iconSkin : "iCandyFolder",
+		open : true,
+		nodes : [ {
+			name : "Email",
+			iconSkin : "iCandyEmail"
+		}, {
+			name : "音乐",
+			iconSkin : "iCandyMusic"
+		}, {
+			name : "电影",
+			iconSkin : "iCandyMovie"
+		}, {
+			name : "图片",
+			iconSkin : "iCandyImg"
+		} ]
+	}, {
+		name : "我的电脑",
+		iconSkin : "iCandyMyPC",
+		open : false,
+		nodes : [ {
+			name : "聊天软件",
+			iconSkin : "iCandyIM"
+		}, {
+			name : "游戏",
+			iconSkin : "iCandyGame"
+		}, {
+			name : "工具",
+			iconSkin : "iCandyTools"
+		}, {
+			name : "垃圾箱",
+			iconSkin : "iCandyRB"
+		}, {
+			name : "设置",
+			iconSkin : "iCandySetPC"
+		} ]
+	}, {
+		name : "我的日历",
+		iconSkin : "iCandyMyDate",
+		open : false,
+		nodes : [ {
+			name : "私密活动",
+			iconSkin : "iCandySecret"
+		}, {
+			name : "爱心活动",
+			iconSkin : "iCandyLove"
+		}, {
+			name : "当日活动",
+			iconSkin : "iCandyToday"
+		}, {
+			name : "设置日历",
+			iconSkin : "iCandySetDate"
+		} ]
+	}
+
+	];
+	var zNodesSmooth = [ {
+		name : "我的收藏夹",
+		iconSkin : "smoothFolder",
+		open : true,
+		nodes : [ {
+			name : "Email",
+			iconSkin : "smoothEmail"
+		}, {
+			name : "音乐",
+			iconSkin : "smoothMusic"
+		}, {
+			name : "电影",
+			iconSkin : "smoothMovie"
+		}, {
+			name : "图片",
+			iconSkin : "smoothImg"
+		} ]
+	}, {
+		name : "我的电脑",
+		iconSkin : "smoothMyPC",
+		open : false,
+		nodes : [ {
+			name : "聊天软件",
+			iconSkin : "smoothIM"
+		}, {
+			name : "游戏",
+			iconSkin : "smoothGame"
+		}, {
+			name : "工具",
+			iconSkin : "smoothTools"
+		}, {
+			name : "垃圾箱",
+			iconSkin : "smoothRB"
+		}, {
+			name : "设置",
+			iconSkin : "smoothSetPC"
+		} ]
+	}, {
+		name : "我的日历",
+		iconSkin : "smoothMyDate",
+		open : false,
+		nodes : [ {
+			name : "私密活动",
+			iconSkin : "smoothSecret"
+		}, {
+			name : "爱心活动",
+			iconSkin : "smoothLove"
+		}, {
+			name : "当日活动",
+			iconSkin : "smoothToday"
+		}, {
+			name : "设置日历",
+			iconSkin : "smoothSetDate"
+		} ]
+	}
+
+	];
+
+	$(document).ready(function() {
+		reloadTree("1");
+	});
+
+	var curType = '0';
+	var curLi;
+	function reloadTree(cssSkin) {
+		var setting1 = clone(setting);
+		var zNodes1;
+
+		if (curType == cssSkin) return;
+		if (curLi) curLi.removeClass("focus");
+		
+		if (cssSkin == "1") {
+			zNodes1 = clone(zNodesFlag);
+			curLi = $("#flagStyle");
+		} else if (cssSkin == "2") {
+			zNodes1 = clone(zNodesICandy);
+			curLi = $("#iCandyStyle");
+		} else {
+			zNodes1 = clone(zNodesSmooth);
+			curLi = $("#smoothStyle");
+		}
+		zTree1 = $("#treeDemo").zTree(setting1, zNodes1);
+		curLi.addClass("focus");
+		curType = cssSkin;
+		
+	}
+
+	function changeSize() {
+		window.location.href = "skinDemo24.html";
+	}
+	//-->
+</SCRIPT>
+  
+ </HEAD>
+
+<BODY>
+<center class="headTitle">皮肤演示</center>
+<TABLE border=0 width="700" class="tb1">
+	<TR>
+		<TD width=380px align=center valign=top>
+		<div class="zTreeDemoBackground">
+			<ul id="treeDemo" class="tree"></ul>
+		</div>		
+		</TD>
+		<TD width=320px align=left valign=top>
+		<div class="demoContent">
+			<li class="title focus">
+				<button class="ico books" onfocus="this.blur();"></button>zTree 大小
+				<ul>
+					图标像素:&nbsp;
+					<INPUT TYPE="radio" id="nameCol_1" NAME="nameColRadio" checked>18x18&nbsp;
+					<INPUT TYPE="radio" id="nameCol_2" NAME="nameColRadio" onclick="changeSize();">24x24
+				</ul>
+			</li>
+			<li class="title">
+				<button class="ico skin" onfocus="this.blur();"></button>皮肤名称
+				<ul class="remark">——点击以下不同皮肤，看看有什么变化</ul>
+				<ul>
+					<li id="flagStyle" class="menu focus" onclick="reloadTree('1')">
+						<button class="ico star" onfocus="this.blur();"></button>Flag</li>
+						<ul class="event">&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" href="http://jquerytree.googlecode.com/files/flag%E7%B3%BB%E5%88%97%2018x18%E5%9B%BE%E6%A0%87%28278%E4%B8%AA%29.zip">快速下载</a> flag系列 18x18图标 (278个)</ul>
+					<li id="iCandyStyle" class="menu" onclick="reloadTree('2')">
+						<button class="ico star" onfocus="this.blur();"></button>iCandy</li>
+						<ul class="event">&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" href="http://jquerytree.googlecode.com/files/iCandy%E7%B3%BB%E5%88%97%2018x18%E5%9B%BE%E6%A0%87%28311%E4%B8%AA%29.zip">快速下载</a> iCandy系列 18x18图标 (311个)</ul>
+					<li id="smoothStyle" class="menu" onclick="reloadTree('3')">
+						<button class="ico star" onfocus="this.blur();"></button>smooth</li>
+						<ul class="event">&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" href="http://jquerytree.googlecode.com/files/smooth%E7%B3%BB%E5%88%97%2018x18%E5%9B%BE%E6%A0%87%2883%E4%B8%AA%29.zip">快速下载</a> smooth系列 18x18图标 (83个)</ul>
+				</ul>
+			</li>	
+		</div>	
+		</TD>
+	</TR>
+</TABLE>
+
+ </BODY>
+</HTML>

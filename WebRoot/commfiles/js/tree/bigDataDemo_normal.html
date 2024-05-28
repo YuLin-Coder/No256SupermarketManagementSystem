@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+ <HEAD>
+  <TITLE> ZTREE DEMO </TITLE>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" href="demoStyle/demo.css" type="text/css">
+  <link rel="stylesheet" href="zTreeStyle/zTreeStyle.css" type="text/css">
+  <script type="text/javascript" src="jquery-1.4.2.js"></script>
+  <script type="text/javascript" src="jquery-ztree-2.5.js"></script>
+  <script type="text/javascript" src="asyncData/demoData.js"></script>
+  <SCRIPT LANGUAGE="JavaScript">
+  <!--
+	var zTree1;
+	var setting;
+
+	setting = {
+		expandSpeed: "",
+		checkable : true,
+		async: true,
+		asyncUrl: "asyncData/nodeForBigData.php",
+//		asyncUrl: "asyncData/nodeForBigData.jsp",
+		asyncParam: ["prod_id"]
+	};
+
+	$(document).ready(function(){
+		reloadTree();
+	});
+
+	function reloadTree() {
+
+		var nodes = [];
+
+		if ($("#init_2").attr("checked")) {
+			setting.async = false;
+			nodes = zNodesBig;
+		} else {
+			setting.async = true;
+			nodes = [];
+		}
+		zTree1 = $("#treeDemo").zTree(setting, nodes);
+		
+	}	
+
+  //-->
+  </SCRIPT>
+ </HEAD>
+
+<BODY>
+<center class="headTitle">大数据量演示<span> —— 普通加载</span></center>
+<TABLE border=0 width="700" class="tb1">
+	<TR>
+		<TD width=340px align=center valign=top>
+		<div class="zTreeDemoBackground">
+			<ul id="treeDemo" class="tree"></ul>
+		</div>		
+		</TD>
+		<TD width=360px align=left valign=top>
+		<div class="demoContent">
+			<li class="title focus">
+				<font color="red" style="font-size:12px;">此演示需要发布到 php 服务器下方能正常执行。<br/>
+				使用 Tomcat 的朋友，请修改asyncUrl的值</font>
+			</li>
+			<li class="title focus">
+				<button class="ico star" onfocus="this.blur();"></button>加载方式
+				<ul class="remark">——改换不同的加载方式进行比较(总节点数：397 个)</ul>
+				<ul>
+					&nbsp;
+					<INPUT TYPE="radio" id="init_1" NAME="initRadio" checked onclick="reloadTree();">异步加载&nbsp;
+					<INPUT TYPE="radio" id="init_2" NAME="initRadio" onclick="reloadTree();">一次性加载(<font color="red">会假死</font>)
+				</ul>
+			</li>
+			<li class="title focus">
+				<button class="ico books" onfocus="this.blur();"></button>建议说明
+				<ul class="remark">1、这个 Demo 是针对总节点数较多，但每一级节点数量较少的例子</ul>
+				<ul class="event">
+					<li>&nbsp;&nbsp;浏览器整体的性能都不是特别好，尤其是IE，因此对于节点总数较多，每层节点数不多，层数较复杂的情况，建议使用异步加载模式，因为异步加载模式最大的好处就是用多少加载多少，对于一个复杂的树来说，用户访问页面时一般情况下是不会一个个全部节点点击一遍</li>
+					<li></li>
+					<li>&nbsp;&nbsp;对于同级节点数据量很多时，异步加载也会出现假死，建议模仿“大数据量演示”下的“高级异步加载”的例子进行自定义的异步加载</li>
+				</ul>
+				<ul class="remark">2、取消展开、折叠特效 &nbsp;setting.expandSpeed = "";</ul>
+				<ul class="event">
+					<li>&nbsp;&nbsp;动画特效会比较耗费资源，因此对于节点很多的情况下，就不要使用动画特效了</li>
+				</ul>
+				<ul class="remark">3、如果你有好的建议，也请提供出来，谢谢了</ul>
+				<ul class="event">
+					<li>&nbsp;&nbsp;</li>
+				</ul>
+					
+			</li>
+		</div>	
+		</TD>
+	</TR>
+</TABLE>
+</BODY>
+</HTML>

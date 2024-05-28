@@ -1,0 +1,21 @@
+[
+	{ name:"手机", open:false, checked:true,
+		nodes: [
+			{ name:"诺基亚", isParent:true},
+			{ name:"三星"},
+			{ name:"索爱"},
+			{ name:"多普达"}
+		]},
+	{ name:"电脑", open:true, checked:true,
+		nodes: [
+			{ name:"硬件", checked:true},
+			{ name:"整机", isParent:true, checked:true},
+			{ name:"网络", checked:true}
+		]},
+	{ name:"家电", open:false,
+		nodes: [
+			{ name:"电视", checked:true},
+			{ name:"冰箱"},
+			{ name:"空调", isParent:true}
+		]}
+]
